@@ -110,7 +110,7 @@ def variant_view(conn: sqlite3.Connection, cfg: Config, variant_id: str) -> dict
     c = conn.execute("SELECT * FROM campaigns WHERE id=?", (v["campaign_id"],)).fetchone()
     brief = json.loads(c["brief_json"])
     market = cfg.markets.get(v["market"])
-    sources = citable(brief, market)
+    sources = citable(brief, market, master=json.loads(c["master_json"]))
     summary = variant_summary(conn, cfg, v)
     draft = json.loads(v["draft_json"]) if v["draft_json"] else None
     edited = json.loads(v["edited_json"]) if v["edited_json"] else None

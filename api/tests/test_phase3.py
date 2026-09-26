@@ -113,3 +113,16 @@ def test_no_publish_route_exists(client):
     paths = [getattr(r, "path", "") for r in client.app.routes]
     assert not [p for p in paths if any(w in p for w in ("publish", "schedule", "post", "share"))]
     assert json.dumps(paths)
+
+
+def test_changed_fixture_replaces_template_but_not_clones(client):
+    from adapt.db import connect
+    from adapt.seeds import load_fixtures
+
+    cid = client.post("/api/examples/pun").json()["campaign_id"]
+    assert load_fixtures() == []  # unchanged fixtures: nothing reloaded
+    conn = connect()
+    conn.execute("UPDATE meta SET value='stale' WHERE key='seed:pun'")
+    assert load_fixtures() == ["pun"]
+    assert conn.execute("SELECT COUNT(*) FROM campaigns WHERE seed_key='pun' AND session_id IS NULL").fetchone()[0] == 1
+    assert client.get(f"/api/campaigns/{cid}").status_code == 200  # the visitor's clone survives

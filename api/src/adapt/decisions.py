@@ -29,8 +29,11 @@ EDIT_LIMITS = {"headline": 90, "body": 450, "cta": 40}
 
 
 def who_or_default(who: str | None) -> str:
+    """Every log entry names a person. No name, no action."""
     who = (who or "").strip()
-    return who[:80] if who else "Unnamed reviewer"
+    if not who:
+        raise Refused("Add your name first. It goes in the decision log with every action.", 422)
+    return who[:80]
 
 
 def _log(conn: sqlite3.Connection, v: sqlite3.Row, session_id: str | None, who: str, action: str,

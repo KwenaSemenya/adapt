@@ -37,9 +37,19 @@ class Source:
     illustrative: bool = False
 
 
-def citable(brief: dict, market: Market | None) -> dict[str, Source]:
-    """Everything a change or flag may cite for this brief and market."""
+MASTER_ID = "BRIEF-MASTER"
+
+
+def citable(brief: dict, market: Market | None, master: dict | None = None) -> dict[str, Source]:
+    """Everything a change or flag may cite for this brief and market.
+
+    `master` is passed only for flagging: a flag may cite the US master copy to say
+    "the variant claims something the master doesn't". Changes never cite it.
+    """
     out: dict[str, Source] = {}
+    if master:
+        text = " / ".join(master[k] for k in ("headline", "body", "cta"))
+        out[MASTER_ID] = Source(MASTER_ID, "brief", "master", "Brief · US master copy", text)
     for bid, field in BRIEF_IDS.items():
         value = (brief.get(field) or "").strip()
         if value:

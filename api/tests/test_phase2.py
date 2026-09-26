@@ -76,13 +76,14 @@ class Fake:
     def flag(self, market):
         code = market.upper()
         return {"flags": [
-            {"severity": "Low", "text": "Check: does 'sorted' still sound like Kin?", "cites": f"{code}-V1",
-             "quote": "sorted"},
-            {"severity": "High", "text": "Check: made-up rule.", "cites": f"{code}-Z99", "quote": ""},
+            {"severity": "Low", "basis": "stated", "text": "Check: does 'sorted' still sound like Kin?",
+             "cites": f"{code}-V1", "quote": "sorted"},
+            {"severity": "High", "basis": "missing", "text": "Check: made-up rule.", "cites": f"{code}-Z99",
+             "quote": ""},
         ]}
 
     def brief(self, market):
-        return {"flags": [{"severity": "Medium", "text": "Check: the CTA says free without 14 days.",
+        return {"flags": [{"kind": "mandatory", "text": "Check: the CTA says free without 14 days.",
                            "cites": "BRIEF-MANDATORIES", "quote": "Try Kin free."}]}
 
 
@@ -255,3 +256,31 @@ def test_removal_and_nested_changes_stay_grounded(env):
     conn = connect()
     nows = [r["now"] for r in conn.execute("SELECT now FROM changes WHERE variant_id=?", (za["id"],))]
     assert "" in nows and "WhatsApp group" in nows and "the whole family WhatsApp group" in nows
+
+
+def test_implied_risks_are_capped_at_low_and_master_is_citable(env):
+    fake = Fake()
+    fake.flag = lambda m: {"flags": [
+        {"severity": "High", "basis": "implied", "text": "Check: implies reading chats.", "cites": f"{m.upper()}-S1",
+         "quote": "finds a time"},
+        {"severity": "High", "basis": "stated", "text": "Check: quote not in copy.", "cites": f"{m.upper()}-C1",
+         "quote": "reads your inbox"},
+        {"severity": "Medium", "basis": "stated", "text": "Check: new capability.", "cites": "BRIEF-MASTER",
+         "quote": "sorted"},
+        {"severity": "Medium", "basis": "stated", "text": "Check: a removal, not a claim.", "cites": "BRIEF-MASTER",
+         "quote": "The admin is"},
+        {"severity": "High", "basis": "missing", "text": "Check: no trial terms.", "cites": f"{m.upper()}-C1",
+         "quote": ""},
+    ]}
+    rid, _ = _run(env, fake)
+    conn = connect()
+    za = _variants(rid)["za"]
+    rows = {r["text"]: r["severity"] for r in conn.execute("SELECT text, severity FROM flags WHERE variant_id=?",
+                                                            (za["id"],))}
+    assert rows["Check: Implies reading chats."] == "Low"
+    assert rows["Check: Quote not in copy."] == "Low"
+    assert rows["Check: New capability."] == "Medium"
+    assert rows["Check: No trial terms."] == "High"
+    assert "Check: A removal, not a claim." not in rows  # quotes only master words, so it's dropped
+    brief = conn.execute("SELECT severity FROM flags WHERE run_id=? AND scope='brief'", (rid,)).fetchone()
+    assert brief["severity"] == "Medium"  # set by code from kind=mandatory

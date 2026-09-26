@@ -14,7 +14,7 @@ from typing import Iterator
 
 from .config import ROOT
 
-TABLES = ("sessions", "campaigns", "runs", "variants", "changes", "flags", "decisions", "log", "metrics")
+TABLES = ("sessions", "campaigns", "runs", "variants", "changes", "flags", "decisions", "log", "metrics", "meta")
 
 
 def db_path() -> Path:

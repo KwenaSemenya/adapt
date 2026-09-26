@@ -33,8 +33,8 @@ def _variant_with_high(client) -> dict:
 
     fake = Fake()
     fake.flag = lambda m: {"flags": [
-        {"severity": "High", "text": "Check: privacy.", "cites": f"{m.upper()}-C1", "quote": ""},
-        {"severity": "Low", "text": "Check: word.", "cites": f"{m.upper()}-V1", "quote": "sorted"},
+        {"severity": "High", "basis": "missing", "text": "Check: privacy.", "cites": f"{m.upper()}-C1", "quote": ""},
+        {"severity": "Low", "basis": "stated", "text": "Check: word.", "cites": f"{m.upper()}-V1", "quote": "sorted"},
     ]}
     llm.set_transport(fake)
     cid = client.post("/api/campaigns", json={"brief": BRIEF, "master": MASTER, "markets": ["za"]}).json()[
@@ -189,3 +189,19 @@ def test_decision_log_is_append_only(client):
     with pytest.raises(Exception, match="append-only"):
         conn.execute("DELETE FROM decisions")
     assert json.dumps(_log(client, v["campaign_id"]))
+
+
+def test_every_logged_action_needs_a_name(client):
+    v = _variant_with_high(client)
+    f = v["flags"][0]
+    r = client.post(f"/api/flags/{f['id']}/ack", json={"who": ""})
+    assert r.status_code == 422 and "Add your name first" in r.json()["message"]
+    r = client.post(f"/api/variants/{v['id']}/reject", json={"reason": "No."})
+    assert r.status_code == 422
+
+
+def test_review_and_draft_timing():
+    from adapt.decisions import _secs
+
+    assert _secs("2026-09-26T10:00:00+00:00", "2026-09-26T10:06:40+00:00") == 400
+    assert _secs(None, "2026-09-26T10:00:00+00:00") is None

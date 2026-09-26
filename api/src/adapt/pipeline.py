@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 from . import prompts
 from .config import Config
 from .db import connect, log_event, new_id, now, tx
-from .grounding import FIELDS, citable, locate, overlaps, ranges, unmarked_edits
+from .grounding import FIELDS, MASTER_ID, citable, locate, overlaps, ranges, unmarked_edits
 from .llm import CallContext, StepError, call_json, model_id
 
 log = logging.getLogger("adapt.pipeline")
@@ -57,6 +57,9 @@ class ScoreOut(BaseModel):
 
 class FlagItem(BaseModel):
     severity: Literal["High", "Medium", "Low", "Low confidence"]
+    basis: Literal["stated", "implied", "missing"] = Field(
+        description="stated: the quoted words say it; implied: it follows only from how the product might work; "
+                    "missing: something required is absent.")
     text: str = Field(min_length=1)
     cites: str
     quote: str
@@ -67,10 +70,16 @@ class FlagOut(BaseModel):
 
 
 class BriefFlagItem(BaseModel):
-    severity: Literal["High", "Medium", "Low"]
+    kind: Literal["legal", "mandatory", "contradiction"] = Field(
+        description="legal: a likely legal or compliance problem in the wording; mandatory: a brief mandatory is "
+                    "missed; contradiction: the master contradicts the proposition.")
     text: str = Field(min_length=1)
     cites: str
     quote: str
+
+
+# Brief-level severity is set by code from the kind of problem, not by the model's own judgement.
+BRIEF_SEVERITY = {"legal": "High", "mandatory": "Medium", "contradiction": "Medium"}
 
 
 class BriefFlagOut(BaseModel):
@@ -345,6 +354,31 @@ def score_step(cfg: Config, variant_id: str) -> None:
         _set(conn, variant_id, step="flag")
 
 
+_WORDS = re.compile(r"[\w'’]+")
+
+
+def _new_words(quote: str, master_text: str) -> bool:
+    master = {w.lower() for w in _WORDS.findall(master_text)}
+    return any(w.lower() not in master for w in _WORDS.findall(quote))
+
+
+def _in_copy(quote: str, text: dict) -> bool:
+    q = re.sub(r"\s+", " ", quote.strip().lower())
+    if len(q) < 3:
+        return False
+    whole = re.sub(r"\s+", " ", " ".join(text[k] for k in ("headline", "body", "cta")).lower())
+    return q in whole
+
+
+def _campaign_master(variant_id: str) -> str:
+    conn = connect()
+    try:
+        return conn.execute("SELECT c.master_json FROM campaigns c JOIN variants v ON v.campaign_id=c.id "
+                            "WHERE v.id=?", (variant_id,)).fetchone()["master_json"]
+    finally:
+        conn.close()
+
+
 def flag_step(cfg: Config, variant_id: str) -> None:
     with tx() as conn:
         ctx = _context(conn, variant_id)
@@ -352,16 +386,20 @@ def flag_step(cfg: Config, variant_id: str) -> None:
                                                  (variant_id,))]
     v, brief = ctx["v"], ctx["brief"]
     market = cfg.markets[v["market"]]
-    sources = citable(brief, market)
     draft = json.loads(v["draft_json"])
     text = _variant_text(v)
     cctx = CallContext("flag", v["run_id"], variant_id, v["market"])
+    sources = citable(brief, market, master=json.loads(_campaign_master(variant_id)))
     out = call_json(prompts.FLAG_SYSTEM, prompts.flag_user(market, brief, text, sources), FlagOut, cctx)
 
     rows, dropped = [], []
     for f in out.flags:
         cite = f.cites.strip()
         if cite not in sources:
+            dropped.append(f)
+            continue
+        # A "new claim" flag must quote words the master doesn't have; otherwise it's about a removal or rewording.
+        if cite == MASTER_ID and not _new_words(f.quote, sources[MASTER_ID].text):
             dropped.append(f)
             continue
         body = check_text(f.text)
@@ -374,6 +412,10 @@ def flag_step(cfg: Config, variant_id: str) -> None:
         # "Low confidence" is a signal, not an opinion: it stands only when a change relies on that gap.
         gap_used = any(c["cites"] == cite for c in changes) and sources[cite].is_gap
         if severity == "Low confidence" and not gap_used:
+            severity = "Low"
+        # A risk the copy only implies (or whose quote isn't really in the copy) is worth a look, never a blocker.
+        stated = f.basis == "stated" and _in_copy(f.quote, text)
+        if f.basis != "missing" and not stated and severity in ("High", "Medium"):
             severity = "Low"
         rows.append({"severity": severity, "text": body, "cites": cite, "change_id": change_id})
 
@@ -431,7 +473,7 @@ def brief_step(cfg: Config, run_id: str) -> None:
             conn.execute(
                 "INSERT INTO flags (id, run_id, variant_id, scope, position, severity, text, cites) "
                 "VALUES (?,?,?,?,?,?,?,?)",
-                (new_id(), run_id, None, "brief", kept, f.severity, body, cite),
+                (new_id(), run_id, None, "brief", kept, BRIEF_SEVERITY[f.kind], body, cite),
             )
             kept += 1
         conn.execute("UPDATE runs SET brief_step='done' WHERE id=?", (run_id,))

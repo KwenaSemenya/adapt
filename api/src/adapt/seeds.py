@@ -81,7 +81,13 @@ def export_fixture(seed_key: str, campaign_id: str, run_id: str) -> Path:
 
 
 def load_fixtures() -> list[str]:
-    """Insert seed templates from fixtures if they aren't in the DB yet. Returns loaded keys."""
+    """Load seed templates from fixtures. A changed fixture replaces its template.
+
+    Templates are keyed by a fingerprint of the fixture file, so regenerated seeds
+    reach the live DB on the next deploy. Visitors' existing clones are untouched.
+    """
+    import hashlib
+
     loaded = []
     if not FIXTURE_DIR.exists():
         return loaded
@@ -89,17 +95,32 @@ def load_fixtures() -> list[str]:
         path = FIXTURE_DIR / f"{key}.json"
         if not path.exists():
             continue
-        data = json.loads(path.read_text(encoding="utf-8"))
+        raw = path.read_bytes()
+        digest = hashlib.sha256(raw).hexdigest()
+        data = json.loads(raw)
         with tx() as conn:
-            exists = conn.execute(
-                "SELECT 1 FROM campaigns WHERE seed_key=? AND session_id IS NULL", (key,)
-            ).fetchone()
-            if exists:
+            meta = conn.execute("SELECT value FROM meta WHERE key=?", (f"seed:{key}",)).fetchone()
+            tpl = conn.execute("SELECT id FROM campaigns WHERE seed_key=? AND session_id IS NULL", (key,)).fetchone()
+            if tpl and meta and meta["value"] == digest:
                 continue
+            if tpl:
+                _delete_template(conn, tpl["id"])
             for table in _TABLES:
                 for row in data[table]:
                     cols = ", ".join(row)
                     marks = ", ".join("?" for _ in row)
                     conn.execute(f"INSERT INTO {table} ({cols}) VALUES ({marks})", tuple(row.values()))
+            conn.execute("INSERT INTO meta (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",
+                         (f"seed:{key}", digest))
         loaded.append(key)
     return loaded
+
+
+def _delete_template(conn, campaign_id: str) -> None:
+    runs = [r["id"] for r in conn.execute("SELECT id FROM runs WHERE campaign_id=?", (campaign_id,))]
+    for rid in runs:
+        conn.execute("DELETE FROM flags WHERE run_id=?", (rid,))
+        conn.execute("DELETE FROM changes WHERE variant_id IN (SELECT id FROM variants WHERE run_id=?)", (rid,))
+        conn.execute("DELETE FROM variants WHERE run_id=?", (rid,))
+        conn.execute("DELETE FROM runs WHERE id=?", (rid,))
+    conn.execute("DELETE FROM campaigns WHERE id=?", (campaign_id,))

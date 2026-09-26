@@ -162,20 +162,23 @@ FLAG_SYSTEM = f"""You check a draft advertising variant for one market before a 
 
 List only the few things the director genuinely needs to check. A clean variant may have no flags. Rules:
 1. Every flag cites exactly one citable ID: the snapshot entry or brief field that describes the risk, rule or gap.
-2. A flag must be about words that are actually in the variant, or a mandatory the variant actually misses. The words in `quote` must themselves state the risk. If the risk exists only because you inferred how the product works (for example, what data it must access to do a task), don't flag it.
-3. Start each flag with "Check:" followed by the specific words or issue, in one or two plain sentences. Example: "Check: 'sorted' is common in UK ads. Does it still sound like Kin?"
-4. Severity: High = the wording likely breaches a compliance rule or would seriously offend. Medium = likely to misfire with this audience, or a mandatory is missed. Low = worth a look. Low confidence = a line relies on something the snapshot lists as a known gap; cite that gap.
-5. `quote` is the exact variant text the flag is about, copied character for character ("" only when the flag is about something missing).
-6. The legal line is attached by the system word for word. Never flag it.
-7. At most 4 flags. Don't rewrite the copy.
-8. {DATA_RULE}"""
+2. Give each flag a basis. stated: the words in `quote` themselves say the risky thing. implied: the risk follows only from how the product might work, not from what the copy says. missing: something the brief or a rule requires isn't there. Be honest about the basis; implied risks are shown to the director as low-priority notes.
+3. If the variant states a product capability, feature or promise that the US master copy doesn't, flag it (basis stated, severity Medium) and cite BRIEF-MASTER.
+4. Start each flag with "Check:" followed by the specific words or issue, in one or two plain sentences. Example: "Check: 'sorted' is common in UK ads. Does it still sound like Kin?"
+5. Severity: High = the wording likely breaches a compliance rule or would seriously offend. Medium = likely to misfire with this audience, or a mandatory is missed. Low = worth a look. Low confidence = a line relies on something the snapshot lists as a known gap; cite that gap.
+6. `quote` is the exact variant text the flag is about, copied character for character ("" only when the basis is missing).
+7. The legal line is attached by the system word for word. Never flag it.
+8. At most 4 flags. Don't rewrite the copy.
+9. {DATA_RULE}"""
 
 
 def flag_user(market: Market, brief: dict, variant: dict, sources: dict[str, Source]) -> str:
+    master = sources.get("BRIEF-MASTER")
     return "\n\n".join(
         [
             snapshot_block(market),
             brief_block(brief, {}, include_master=False),
+            f"<master_copy id=\"BRIEF-MASTER\">{neutralise(master.text) if master else ''}</master_copy>",
             variant_block(variant),
             citable_list(sources),
         ]
@@ -186,7 +189,7 @@ def flag_user(market: Market, brief: dict, variant: dict, sources: dict[str, Sou
 
 BRIEF_FLAG_SYSTEM = f"""You check a global brief and its US master copy for problems that every market will inherit, before any market adapts it.
 
-Flag only issues that affect every market: the master copy breaking a mandatory, contradicting the proposition, or making a claim the brief doesn't support. Each flag cites exactly one brief ID (BRIEF-...), is written as "Check: ..." in plain words, and has a severity: High = likely legal or compliance problem; Medium = a mandatory is missed or the copy contradicts the brief; Low = worth a look. `quote` is the exact master text the flag is about ("" if something is missing). Return no flags if there are none. At most 3.
+The master copy is the approved source of product claims, and the legal line is supplied by the brief owner. Don't flag the master for making claims, and don't flag the legal line. Flag only: a likely legal or compliance problem in the master's wording (kind legal), a mandatory in the brief that the master misses (kind mandatory), or master wording that contradicts the proposition (kind contradiction). Each flag cites exactly one brief ID (BRIEF-...) and is written as "Check: ..." in plain words. `quote` is the exact master text the flag is about ("" if something is missing). Return no flags if there are none. At most 3.
 
 {DATA_RULE}"""
 

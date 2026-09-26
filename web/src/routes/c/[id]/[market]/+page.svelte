@@ -33,9 +33,20 @@
 
 	$effect(() => {
 		writeLocal('adapt.cdName', cdName);
+		if (cdName.trim()) nameNudge = false;
 	});
 
+	// Every logged action needs a name, asked for once and remembered, so the log never says "Unnamed reviewer".
+	let nameNudge = $state(false);
+	function needName(): boolean {
+		if (cdName.trim()) return false;
+		nameNudge = true;
+		document.getElementById('reviewer-name')?.focus();
+		return true;
+	}
+
 	async function act(key: string, path: string, body: Record<string, unknown> = {}) {
+		if (needName()) return false;
 		pending = key;
 		errors = { ...errors, [key]: '' };
 		try {
@@ -53,6 +64,7 @@
 	}
 
 	function openPanel(key: 'approve' | 'edit' | 'reject') {
+		if (key !== 'approve' && panel !== key && needName()) return;
 		if (key === 'edit' && panel !== 'edit' && v?.text) {
 			edit = { headline: v.text.headline, body: v.text.body, cta: v.text.cta };
 			editErrors = {};
@@ -230,11 +242,33 @@
 			</nav>
 			<div class="flex flex-wrap items-end justify-between gap-8">
 				<h1 class="t-display">{summary.name}</h1>
-				<div class="flex items-baseline gap-4">
-					<span class="t-note">Status</span>
-					<span class="text-[18px]">{summary.ready ? DECISION_LABEL[summary.decision] : 'Not ready'}</span>
+				<div class="flex flex-wrap items-baseline gap-x-8 gap-y-3">
+					<!-- Not in the design: who is reviewing, so every log entry has a name. -->
+					<label class="flex items-baseline gap-3">
+						<span class="t-note">Reviewing as</span>
+						<input
+							id="reviewer-name"
+							bind:value={cdName}
+							placeholder="Your name"
+							autocomplete="name"
+							aria-invalid={nameNudge ? 'true' : undefined}
+							aria-describedby={nameNudge ? 'name-nudge' : undefined}
+							class="w-[200px] border-0 border-b bg-transparent py-1 text-[16px] outline-offset-4 {nameNudge
+								? 'border-ink'
+								: 'border-edge'}"
+						/>
+					</label>
+					<div class="flex items-baseline gap-4">
+						<span class="t-note">Status</span>
+						<span class="text-[18px]">{summary.ready ? DECISION_LABEL[summary.decision] : 'Not ready'}</span>
+					</div>
 				</div>
 			</div>
+			{#if nameNudge}
+				<p id="name-nudge" class="m-0 text-right text-[16px]" role="alert">
+					Add your name first. It goes in the decision log with every action.
+				</p>
+			{/if}
 		</div>
 
 		{#if !summary.ready}
@@ -509,6 +543,7 @@
 								<button
 									class="link-btn text-[16px]"
 									onclick={() => {
+										if (needName()) return;
 										dismissOpen = fl.id;
 										dismissText = '';
 									}}>Dismiss</button
@@ -627,11 +662,6 @@
 							>
 							<textarea id="rej" rows="3" bind:value={rejectText} class="field resize-y p-3 leading-[1.4]"
 							></textarea>
-							{#if !name}
-								<span class="t-note"
-									>Logged as “Unnamed reviewer”. Add your name under Approve to sign it.</span
-								>
-							{/if}
 							<div class="flex flex-wrap items-center gap-6">
 								{#if rejectText.trim()}
 									<button class="btn btn-primary" onclick={reject} aria-busy={pending === 'reject'}

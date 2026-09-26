@@ -115,7 +115,7 @@ def test_app_boots_tables_exist_and_log_is_append_only(cfg_dir: Path, tmp_path: 
         body = r.json()
         assert body["app"] == "ADAPT"
         assert set(body["tables"]) == {
-            "sessions", "campaigns", "runs", "variants", "changes", "flags", "decisions", "log", "metrics",
+            "sessions", "campaigns", "runs", "variants", "changes", "flags", "decisions", "log", "metrics", "meta",
         }
         assert client.get("/api/nope").status_code == 404
 

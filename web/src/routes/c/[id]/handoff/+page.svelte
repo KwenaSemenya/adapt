@@ -45,7 +45,17 @@
 			await navigator.clipboard.writeText(txt(a));
 			msgs[a.market] = 'Copied. Paste it wherever you work.';
 		} catch {
-			msgs[a.market] = "Couldn't reach the clipboard. Select the copy on the right and press Ctrl+C.";
+			// Clipboard blocked (permissions, embedded frames): select the copy so one keystroke finishes the job.
+			const card = document.getElementById(`copy-${a.market}`);
+			if (card) {
+				const range = document.createRange();
+				range.selectNodeContents(card);
+				const sel = window.getSelection();
+				sel?.removeAllRanges();
+				sel?.addRange(range);
+			}
+			const key = /Mac|iPhone|iPad/.test(navigator.platform) ? 'Cmd+C' : 'Ctrl+C';
+			msgs[a.market] = `Couldn't reach the clipboard, so the copy is selected. Press ${key} to copy it.`;
 		}
 	}
 
@@ -98,7 +108,10 @@
 					<span role="status" class="min-h-[18px] t-note">{msgs[ap.market] ?? ''}</span>
 				</div>
 				<!-- Hairline border instead of the design's box-shadow. -->
-				<div class="serif grid gap-6 rounded-[20px] border border-edge p-6 md:p-10 lg:col-span-8">
+				<div
+					id={`copy-${ap.market}`}
+					class="serif grid gap-6 rounded-[20px] border border-edge p-6 md:p-10 lg:col-span-8"
+				>
 					<p class="m-0 text-[28px] leading-[1.2] text-balance">{ap.headline}</p>
 					<p class="m-0 text-[18px] leading-[1.4] text-pretty">{ap.body}</p>
 					<p class="m-0 text-[18px]">{ap.cta}</p>

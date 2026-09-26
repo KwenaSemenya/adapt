@@ -139,3 +139,9 @@ CREATE TABLE IF NOT EXISTS metrics (
   is_seed          INTEGER NOT NULL DEFAULT 0,
   recorded_at      TEXT NOT NULL
 );
+
+-- Small key/value store, e.g. the fingerprint of each loaded seed fixture.
+CREATE TABLE IF NOT EXISTS meta (
+  key   TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+);
