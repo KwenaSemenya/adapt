@@ -1,0 +1,72 @@
+# AI-DRAFTED by Claude on 2026-09-26 from general knowledge. PENDING HUMAN REVIEW.
+# Every compliance entry is verified: false until checked against the primary source.
+# Anything not confidently known is listed under known_gaps rather than guessed.
+
+code: ng
+name: Nigeria
+language: Nigerian English
+updated: "2026-09-26"
+
+voice_norms:
+  - id: NG-V1
+    text: Consumer ads lean warm and expressive, and humour is common, often built on the shared everyday hustle. Very dry understatement can read as flat unless the chore is instantly recognisable.
+  - id: NG-V2
+    text: Nigerian English uses British spelling (organise, colour) and many British words (queue, holiday).
+  - id: NG-V3
+    text: Short Pidgin phrases such as "no wahala" (no problem) are understood nationwide and signal warmth. Use sparingly, and never in a way that mocks how people speak.
+
+register:
+  - id: NG-R1
+    text: Courtesy and respect matter. Direct "you" is fine, but copy should never read as talking down to the reader or as over-familiar.
+  - id: NG-R2
+    text: Standard English is the default for national ads. Pidgin is a deliberate choice, not a default.
+
+references:
+  use:
+    - id: NG-M1
+      text: WhatsApp is the dominant messaging app. Family, church, mosque and estate WhatsApp groups are central to daily life.
+    - id: NG-M2
+      text: 'Recognisable life-admin chores: bank and identity linking (BVN, NIN), buying prepaid electricity tokens, renewing TV subscriptions, keeping the generator fuelled.'
+  avoid:
+    - id: NG-A1
+      text: US sports idioms, especially baseball ("struck out", "home run"), are not widely understood. Football (soccer) is the dominant sport.
+    - id: NG-A2
+      text: Thanksgiving is not observed in Nigeria. US holiday customs (turkey, pie, the holiday drive to fetch relatives) read as foreign.
+    - id: NG-A3
+      text: 'US-only terms read as foreign: "vacation", "fall" for autumn, "zip code", dollar amounts.'
+
+sensitivities:
+  - id: NG-S1
+    text: Religion. Christian and Muslim audiences are both large. Don't assume one faith, and keep humour away from religious practice.
+    severity: High
+  - id: NG-S2
+    text: Ethnic and regional identity (Hausa, Yoruba, Igbo and many others). Avoid stereotypes of any group.
+    severity: High
+  - id: NG-S3
+    text: Online fraud is a widely discussed concern. A claim that an app reads your messages, or touches bank or identity details, raises suspicion unless purpose and control are clear.
+    severity: High
+  - id: NG-S4
+    text: Inflation and cost-of-living pressure are high. "Free" offers should be plain about what happens when the free period ends.
+    severity: Low
+
+compliance:
+  - id: NG-C1
+    text: 'NDPA: personal data needs a lawful basis such as consent, must be collected for a specified purpose, and people must be told how it is used. Ads should not overstate or obscure what data the product accesses.'
+    source: Nigeria Data Protection Act 2023, sections 24 to 27
+    verified: false
+  - id: NG-C2
+    text: Adverts must be vetted and approved by ARCON's Advertising Standards Panel before they are exposed to the public. An approved variant in ADAPT still needs this approval.
+    source: Advertising Regulatory Council of Nigeria Act 2022; Nigerian Code of Advertising Practice
+    verified: false
+  - id: NG-C3
+    text: Marketing must not make false or misleading representations about a product or its price.
+    source: Federal Competition and Consumer Protection Act 2018, provisions on misleading representations
+    verified: false
+
+known_gaps:
+  - id: NG-G1
+    text: No guidance on referencing family and social occasions (weddings, naming ceremonies, owambe parties) without misstepping.
+  - id: NG-G2
+    text: No guidance for Pidgin-first ads or Hausa, Yoruba or Igbo-language versions. This snapshot covers English-language ads only.
+  - id: NG-G3
+    text: 'No guidance on regional differences in tone (for example Lagos versus Abuja versus the North), or on words like "chase" that may read differently locally.'

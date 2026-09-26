@@ -1,0 +1,74 @@
+# AI-DRAFTED by Claude on 2026-09-26 from general knowledge. PENDING HUMAN REVIEW.
+# Every compliance entry is verified: false until checked against the primary source.
+# Anything not confidently known is listed under known_gaps rather than guessed.
+
+code: za
+name: South Africa
+language: South African English
+updated: "2026-09-26"
+
+voice_norms:
+  - id: ZA-V1
+    text: Consumer ads lean warm and wry. Humour built on shared everyday frustrations lands well when it is observational rather than mocking.
+  - id: ZA-V2
+    text: South African English uses British spelling (organise, colour) and many British words (queue, diary, holiday).
+  - id: ZA-V3
+    text: A widely understood local word such as "lekker" (good, enjoyable) or "sharp" (fine, see you) signals local voice. Use one at most per ad; more reads as a brand trying too hard.
+  - id: ZA-V4
+    text: '"Sorted" is the common everyday word for something dealt with. "Handled" is understood but reads as imported American phrasing.'
+
+register:
+  - id: ZA-R1
+    text: Informal, direct second person ("you") is standard in consumer ads. Formal or bureaucratic phrasing reads as distant.
+  - id: ZA-R2
+    text: English is the common language of national ads, but for many readers it is a second or third language. Keep sentences short and idioms plain.
+
+references:
+  use:
+    - id: ZA-M1
+      text: WhatsApp is the dominant messaging app. "WhatsApp group" is the everyday term for a group chat.
+    - id: ZA-M2
+      text: 'Recognisable life-admin chores: renewing the car licence disc, querying a municipal account, medical aid claims, queues at Home Affairs.'
+  avoid:
+    - id: ZA-A1
+      text: US sports idioms, especially baseball ("struck out", "home run", "ballpark"), are not widely understood. "Struck out" is likely to be read as "crossed out". Cricket, rugby and soccer are the main sports.
+    - id: ZA-A2
+      text: Thanksgiving is not celebrated in South Africa. References to it and its customs (turkey, pie, the holiday drive to fetch relatives) read as American.
+    - id: ZA-A3
+      text: 'US-only terms read as foreign: "vacation", "fall" for autumn, "zip code", dollar amounts.'
+
+sensitivities:
+  - id: ZA-S1
+    text: Many consumers are wary of apps that access personal messages. A claim that a product reads your inbox or texts invites distrust unless the purpose and control are clear.
+    severity: High
+  - id: ZA-S2
+    text: Race, language and class. Avoid stereotyping by accent, area or language group, and don't assume one kind of household or family.
+    severity: High
+  - id: ZA-S3
+    text: Power cuts (load-shedding) and service-delivery failures are live frustrations. Jokes about them can land but can also read as flippant.
+    severity: Medium
+  - id: ZA-S4
+    text: Cost-of-living pressure is high. "Free" offers should be plain about what happens when the free period ends.
+    severity: Low
+
+compliance:
+  - id: ZA-C1
+    text: 'POPIA: personal information may only be processed lawfully, for a specific stated purpose, and no more than needed. Ads should not overstate or obscure what data the product accesses.'
+    source: Protection of Personal Information Act 4 of 2013, sections 9 to 11 and 13
+    verified: false
+  - id: ZA-C2
+    text: 'Advertising standards: "free" should only describe an offer the consumer genuinely pays nothing for, and conditions such as a trial length must be clear.'
+    source: Advertising Regulatory Board (ARB) Code of Advertising Practice, free offers provisions
+    verified: false
+  - id: ZA-C3
+    text: Marketing must not be false, misleading or deceptive, including by leaving out a material fact.
+    source: Consumer Protection Act 68 of 2008, sections 29 and 41
+    verified: false
+
+known_gaps:
+  - id: ZA-G1
+    text: No guidance for isiZulu, isiXhosa, Afrikaans or other language versions. This snapshot covers English-language ads only.
+  - id: ZA-G2
+    text: No guidance on regional slang or tone differences (for example Gauteng versus the Western Cape).
+  - id: ZA-G3
+    text: No guidance on how AI assistant products are perceived or specifically regulated in South Africa.

@@ -1,0 +1,65 @@
+# AI-DRAFTED by Claude on 2026-09-26 from general knowledge. PENDING HUMAN REVIEW.
+# Every compliance entry is verified: false until checked against the primary source.
+# Anything not confidently known is listed under known_gaps rather than guessed.
+
+code: uk
+name: United Kingdom
+language: British English
+updated: "2026-09-26"
+
+voice_norms:
+  - id: UK-V1
+    text: UK ads favour dry, understated, often self-deprecating humour. Hype and overt enthusiasm read as American and invite cynicism.
+  - id: UK-V2
+    text: British spelling and vocabulary (organise, colour, diary, holiday, queue). "Sorted" is the everyday word for something dealt with.
+  - id: UK-V3
+    text: British English keeps the "and" in "go and do", "come and see". "Go do" reads as American.
+
+register:
+  - id: UK-R1
+    text: Informal, conversational second person is standard. Forced slang or over-familiarity reads as trying too hard.
+
+references:
+  use:
+    - id: UK-M1
+      text: WhatsApp is the most widely used messaging app. "Group chat" and "WhatsApp group" are both everyday terms.
+    - id: UK-M2
+      text: 'Recognisable life-admin chores: booking the MOT, council tax, getting a GP appointment, the boiler service, rearranging a missed parcel delivery.'
+    - id: UK-M3
+      text: Bank holiday weekends and Christmas are the peak moments for family logistics.
+  avoid:
+    - id: UK-A1
+      text: Baseball idioms ("struck out", "home run", "ballpark") are recognised from US media but aren't native. Cricket and football idioms are. A baseball pun reads as imported.
+    - id: UK-A2
+      text: Thanksgiving is not celebrated in the UK. Christmas is the nearest equivalent for family logistics.
+    - id: UK-A3
+      text: 'US-only terms read as foreign: "vacation", "fall" for autumn, "zip code", "Mom", "check" for the bill.'
+
+sensitivities:
+  - id: UK-S1
+    text: Public awareness of data rights is high. A claim that a product reads your messages invites scrutiny unless purpose and control are clear.
+    severity: Medium
+  - id: UK-S2
+    text: NHS access (GP and NHS dentist waits) is a political topic. Jokes about it can read as flippant or partisan.
+    severity: Low
+  - id: UK-S3
+    text: Cost-of-living pressure. "Free" offers should be plain about what happens when the free period ends.
+    severity: Low
+
+compliance:
+  - id: UK-C1
+    text: 'UK GDPR: personal data needs a lawful basis, must be processed transparently, and limited to what is necessary. Ads should not overstate or obscure what data the product accesses.'
+    source: UK GDPR Articles 5, 6 and 13; Data Protection Act 2018
+    verified: false
+  - id: UK-C2
+    text: 'Significant conditions of an offer must be stated clearly, and "free" must only be used where the consumer pays nothing beyond unavoidable costs. For a free trial, the length and what follows should sit close to the claim.'
+    source: CAP Code (UK Code of Non-broadcast Advertising), rules 3.9 to 3.10 and 3.23 to 3.26
+    verified: false
+
+known_gaps:
+  - id: UK-G1
+    text: The exact requirements and start date of the DMCC Act 2024 subscription-contract rules (free trials that roll into paid plans) are not confirmed here.
+  - id: UK-G2
+    text: No guidance on differences for Scotland, Wales or Northern Ireland, or on Welsh-language ads.
+  - id: UK-G3
+    text: No guidance on rules for advertising AI assistant products specifically.
