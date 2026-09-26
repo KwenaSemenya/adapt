@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="e78051f0-ab28-4fb6-9b6a-ed2fb9059a7c"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("e0829c65-3d99-4aa3-9386-905586319a29") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("dc2e2f05-e3a4-4f35-813a-41a06c91aa7e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("2cf3d255-6792-4313-89cb-050cf7e83bb5") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;background:#ffffff;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Helvetica,sans-serif;font-size:16px;line-height:1.4;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em}
+a{color:#1d1d1f;text-underline-offset:3px}
+a:hover{color:#6e6e73}
+*{box-sizing:border-box}
+button,input,textarea{font-family:inherit}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column">
+
+<header style="position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,0.08)">
+  <div style="max-width:1200px;margin:0 auto;padding:0 48px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:32px">
+    <div style="display:flex;gap:8px;align-items:baseline">
+      <span style="font-size:16px">Kin</span>
+      <span style="font-size:13px;color:#6e6e73">Adaptation Engine</span>
+    </div>
+    <nav style="display:flex;gap:32px">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+        <button sc-camel-on-click="{{ n.go }}" aria-current="{{ n.current }}" style="background:none;border:0;padding:0;font-size:13px;color:#1d1d1f;cursor:pointer;text-decoration:{{ n.deco }};text-underline-offset:6px;text-decoration-thickness:1px;transition:color 200ms ease-out" style-hover="color:#6e6e73">{{ n.label }}</button>
+      </sc-for>
+    </nav>
+  </div>
+</header>
+
+<sc-if value="{{ showStateBar }}" hint-placeholder-val="{{ true }}">
+  <div style="background:#f5f5f7">
+    <div style="max-width:1200px;margin:0 auto;padding:10px 48px;display:flex;gap:24px;align-items:baseline;flex-wrap:wrap">
+      <span style="font-size:13px;color:#6e6e73">Prototype states for this screen</span>
+      <sc-for list="{{ stateLinks }}" as="sl" hint-placeholder-count="3">
+        <button sc-camel-on-click="{{ sl.go }}" style="background:none;border:0;padding:0;font-size:13px;color:#1d1d1f;cursor:pointer;text-decoration:{{ sl.deco }};text-underline-offset:4px">{{ sl.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+</sc-if>
+
+<!-- HOME -->
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main data-screen-label="01 Home" style="max-width:1200px;width:100%;margin:0 auto;padding:128px 48px 128px;display:grid;gap:80px">
+  <div style="display:grid;gap:24px;max-width:760px">
+    <h1 style="margin:0;font-size:56px;line-height:1.05;font-weight:400;letter-spacing:-0.035em;text-wrap:balance">The AI drafts and flags. You decide.</h1>
+    <p style="margin:0;font-size:18px;line-height:1.45;color:#6e6e73;text-wrap:pretty;max-width:60ch">Give it a global brief and US master copy. It drafts a version for South Africa, Nigeria and the UK, scores each one against the brand voice, and flags what to check. A local creative director approves, edits or rejects every draft. Nothing is published from here.</p>
+  </div>
+  <div style="display:grid;gap:16px">
+    <sc-if value="{{ homeFirst }}" hint-placeholder-val="{{ true }}">
+      <p style="margin:0;font-size:13px;color:#6e6e73">Start here. The Kin example is already drafted for three markets.</p>
+    </sc-if>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+      <button sc-camel-on-click="{{ openExample }}" style="height:48px;padding:0 24px;background:#1d1d1f;color:#ffffff;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 150ms ease-out" style-hover="background:#424245">Open the example campaign</button>
+      <button sc-camel-on-click="{{ newAdaptation }}" style="height:48px;padding:0 24px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 150ms ease-out" style-hover="background:#f5f5f7">Start a new adaptation</button>
+    </div>
+  </div>
+  <section style="display:grid;gap:32px;border-top:1px solid #e8e8ed;padding-top:32px">
+    <div style="display:flex;gap:16px;align-items:baseline;justify-content:space-between;flex-wrap:wrap">
+      <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">Efficiency</h2>
+      <span style="font-size:13px;color:#6e6e73;font-variant-numeric:tabular-nums">{{ measuredLabel }}</span>
+    </div>
+    <sc-if value="{{ homeHasRuns }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px">
+        <div style="display:grid;gap:8px;align-content:start"><span style="font-size:56px;line-height:1.05;letter-spacing:-0.035em;font-variant-numeric:tabular-nums;white-space:nowrap">1:52</span><span style="font-size:16px;color:#6e6e73">Time to draft, per market (min:sec)</span></div>
+        <div style="display:grid;gap:8px;align-content:start"><span style="font-size:56px;line-height:1.05;letter-spacing:-0.035em;font-variant-numeric:tabular-nums;white-space:nowrap">6:40</span><span style="font-size:16px;color:#6e6e73">Review time, per market (min:sec)</span></div>
+        <div style="display:grid;gap:8px;align-content:start"><span style="font-size:56px;line-height:1.05;letter-spacing:-0.035em;font-variant-numeric:tabular-nums;white-space:nowrap">81%</span><span style="font-size:16px;color:#6e6e73">Words kept from the AI draft</span></div>
+        <div style="display:grid;gap:8px;align-content:start"><span style="font-size:56px;line-height:1.05;letter-spacing:-0.035em;font-variant-numeric:tabular-nums;white-space:nowrap">72%</span><span style="font-size:16px;color:#6e6e73">Flags acknowledged rather than dismissed</span></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ homeNoRuns }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0;font-size:16px;color:#6e6e73;max-width:66ch">No runs measured yet. These numbers fill in after your first reviewed run. The example campaign doesn't count towards them.</p>
+    </sc-if>
+  </section>
+</main>
+</sc-if>
+
+<!-- BRIEF -->
+<sc-if value="{{ isBrief }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="02 Brief" style="max-width:1200px;width:100%;margin:0 auto;padding:88px 48px 128px;display:grid;gap:64px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+    <div style="display:grid;gap:16px">
+      <h1 style="margin:0;font-size:56px;line-height:1.05;font-weight:400;letter-spacing:-0.035em">Brief</h1>
+      <p style="margin:0;font-size:16px;color:#6e6e73">{{ briefIntro }}</p>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center">
+      <sc-if value="{{ exampleLoadedMsg }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#6e6e73">Example brief loaded.</span></sc-if>
+      <button sc-camel-on-click="{{ loadExample }}" style="height:48px;padding:0 24px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#f5f5f7" style-active="transform:scale(0.98)">Load example brief</button>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:48px">
+    <div style="grid-column:span 8;display:grid;gap:48px">
+
+      <section style="display:grid;gap:16px">
+        <div style="display:flex;gap:24px;align-items:baseline">
+          <span style="font-size:13px;color:#6e6e73">Brand</span>
+          <span style="font-size:16px">Kin</span>
+          <span style="font-size:13px;color:#6e6e73">Read-only</span>
+          <button sc-camel-on-click="{{ toggleVoice }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">{{ voiceLinkLabel }}</button>
+        </div>
+        <sc-if value="{{ voiceOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:8px;border-top:1px solid #e8e8ed;padding-top:16px;max-width:66ch">
+            <p style="margin:0;font-size:16px">Voice: warm, plainspoken, dry, calm.</p>
+            <p style="margin:0;font-size:16px;color:#6e6e73">Signatures: short sentences, a dry closing turn, everyday errands named plainly. No exclamation marks. Proposition: Life admin, handled.</p>
+          </div>
+        </sc-if>
+      </section>
+
+      <section style="display:grid;gap:32px">
+        <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">The brief</h2>
+        <sc-for list="{{ briefFields }}" as="f" hint-placeholder-count="4">
+          <div style="display:grid;gap:8px">
+            <div style="display:flex;justify-content:space-between;gap:16px;align-items:baseline">
+              <label for="{{ f.id }}" style="font-size:16px">{{ f.label }}</label>
+              <span style="font-size:13px;color:#6e6e73;font-variant-numeric:tabular-nums">{{ f.count }}</span>
+            </div>
+            <span style="font-size:13px;color:#6e6e73">{{ f.hint }}</span>
+            <sc-if value="{{ f.isInput }}" hint-placeholder-val="{{ true }}">
+              <input id="{{ f.id }}" value="{{ f.value }}" sc-camel-on-change="{{ f.onChange }}" style="height:52px;padding:0 16px;border:{{ f.border }};border-radius:12px;font-size:16px;color:#1d1d1f;background:#ffffff;outline-offset:2px">
+            </sc-if>
+            <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}">
+              <textarea id="{{ f.id }}" rows="{{ f.rows }}" value="{{ f.value }}" sc-camel-on-change="{{ f.onChange }}" style="padding:12px;border:{{ f.border }};border-radius:12px;font-size:16px;line-height:1.4;color:#1d1d1f;background:#ffffff;resize:vertical;outline-offset:2px"></textarea>
+            </sc-if>
+            <sc-if value="{{ f.hasError }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;font-size:16px">{{ f.error }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </section>
+
+      <section style="display:grid;gap:32px">
+        <div style="display:grid;gap:8px">
+          <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">Global master copy</h2>
+          <span style="font-size:13px;color:#6e6e73">US English. This is what each market adapts from.</span>
+        </div>
+        <sc-for list="{{ copyFields }}" as="f" hint-placeholder-count="4">
+          <div style="display:grid;gap:8px">
+            <div style="display:flex;justify-content:space-between;gap:16px;align-items:baseline">
+              <label for="{{ f.id }}" style="font-size:16px">{{ f.label }}</label>
+              <span style="font-size:13px;color:#6e6e73;font-variant-numeric:tabular-nums">{{ f.count }}</span>
+            </div>
+            <sc-if value="{{ f.hasHint }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#6e6e73">{{ f.hint }}</span></sc-if>
+            <sc-if value="{{ f.isInput }}" hint-placeholder-val="{{ true }}">
+              <input id="{{ f.id }}" value="{{ f.value }}" sc-camel-on-change="{{ f.onChange }}" style="height:52px;padding:0 16px;border:{{ f.border }};border-radius:12px;font-family:'Newsreader',Georgia,serif;font-size:18px;color:#1d1d1f;background:#ffffff">
+            </sc-if>
+            <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}">
+              <textarea id="{{ f.id }}" rows="{{ f.rows }}" value="{{ f.value }}" sc-camel-on-change="{{ f.onChange }}" style="padding:12px;border:{{ f.border }};border-radius:12px;font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.4;color:#1d1d1f;background:#ffffff;resize:vertical"></textarea>
+            </sc-if>
+            <sc-if value="{{ f.hasError }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;font-size:16px">{{ f.error }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </section>
+
+      <section style="display:grid;gap:16px">
+        <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">Markets</h2>
+        <div style="display:flex;gap:16px;align-items:center;height:48px">
+          <span style="width:20px;height:20px;display:inline-block;border:1px solid #d2d2d7;border-radius:6px;background:#f5f5f7"></span>
+          <span style="font-size:16px">United States</span>
+          <span style="font-size:13px;color:#6e6e73">Source market. Always included.</span>
+        </div>
+        <sc-for list="{{ marketChecks }}" as="mc" hint-placeholder-count="3">
+          <label style="display:flex;gap:16px;align-items:center;height:48px;cursor:pointer">
+            <input type="checkbox" checked="{{ mc.checked }}" sc-camel-on-change="{{ mc.toggle }}" style="width:20px;height:20px;margin:0;accent-color:#1d1d1f;cursor:pointer">
+            <span style="font-size:16px">{{ mc.name }}</span>
+          </label>
+        </sc-for>
+        <sc-if value="{{ marketError }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:16px">Pick at least one market to adapt for.</p></sc-if>
+      </section>
+
+      <section style="display:grid;gap:16px;border-top:1px solid #e8e8ed;padding-top:32px">
+        <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+          <sc-if value="{{ runEnabled }}" hint-placeholder-val="{{ true }}">
+            <button sc-camel-on-click="{{ run }}" style="height:48px;padding:0 24px;background:#1d1d1f;color:#ffffff;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#424245" style-active="transform:scale(0.98)">{{ runLabel }}</button>
+          </sc-if>
+          <sc-if value="{{ runDisabled }}" hint-placeholder-val="{{ false }}">
+            <button disabled="" aria-disabled="true" style="height:48px;padding:0 24px;background:#e8e8ed;color:#6e6e73;border:1px solid #e8e8ed;border-radius:999px;font-size:16px;cursor:not-allowed">Run adaptation</button>
+          </sc-if>
+          <span style="font-size:16px;color:#6e6e73;font-variant-numeric:tabular-nums">{{ runBudgetText }}</span>
+        </div>
+        <sc-if value="{{ showSummary }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0;font-size:16px;max-width:66ch">{{ summaryText }}</p>
+        </sc-if>
+        <sc-if value="{{ budgetOut }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:8px;max-width:66ch">
+            <p style="margin:0;font-size:16px">You've used all 5 runs for today. Your brief is saved on this page. Runs reset at midnight UTC.</p>
+            <p style="margin:0;font-size:16px">While you wait, you can <button sc-camel-on-click="{{ openExample }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">open the example campaign</button>.</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ runError }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0;font-size:16px;max-width:66ch">The run didn't start because the connection dropped. Your brief is saved and no run was used. Check your connection, then try again.</p>
+        </sc-if>
+      </section>
+    </div>
+
+    <aside style="grid-column:span 4;display:grid;gap:16px;align-content:start;position:sticky;top:32px">
+      <h2 style="margin:0;font-size:16px;font-weight:400">Before you run</h2>
+      <sc-for list="{{ reqs }}" as="rq" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;border-top:1px solid #e8e8ed;padding-top:12px">
+          <span style="font-size:16px">{{ rq.label }}</span>
+          <span style="font-size:13px;color:#6e6e73;font-variant-numeric:tabular-nums;text-align:right">{{ rq.rule }}</span>
+        </div>
+      </sc-for>
+      <p style="margin:0;font-size:13px;color:#6e6e73;border-top:1px solid #e8e8ed;padding-top:12px">Each market takes about two minutes. You can leave this page while it runs.</p>
+    </aside>
+  </div>
+</main>
+</sc-if>
+
+<!-- PROCESSING -->
+<sc-if value="{{ isProcessing }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="03 Processing" style="max-width:1200px;width:100%;margin:0 auto;padding:88px 48px 128px;display:grid;gap:64px">
+  <div style="display:grid;gap:16px">
+    <h1 style="margin:0;font-size:56px;line-height:1.05;font-weight:400;letter-spacing:-0.035em">Drafting for {{ procCountText }}</h1>
+    <p style="margin:0;font-size:16px;color:#6e6e73">Each market drafts, scores and flags on its own. Results show up as each one finishes.</p>
+  </div>
+  <div style="display:grid">
+    <div style="display:grid;grid-template-columns:180px repeat(3,minmax(0,1fr)) 340px;gap:32px;padding-bottom:12px">
+      <span style="font-size:13px;color:#6e6e73">Market</span>
+      <span style="font-size:13px;color:#6e6e73">Drafting</span>
+      <span style="font-size:13px;color:#6e6e73">Scoring</span>
+      <span style="font-size:13px;color:#6e6e73">Flagging</span>
+      <span style="font-size:13px;color:#6e6e73">Result</span>
+    </div>
+    <sc-for list="{{ procRows }}" as="pr" hint-placeholder-count="3">
+      <div style="display:grid;grid-template-columns:180px repeat(3,minmax(0,1fr)) 340px;gap:32px;padding:24px 0;border-top:1px solid #e8e8ed;align-items:start">
+        <span style="font-size:18px">{{ pr.name }}</span>
+        <sc-for list="{{ pr.steps }}" as="st" hint-placeholder-count="3">
+          <div style="display:grid;gap:8px">
+            <div style="height:3px;background:#e8e8ed;border-radius:999px;overflow:hidden"><div style="height:3px;border-radius:999px;width:{{ st.pct }};background:#1d1d1f;transition:width 100ms linear"></div></div>
+            <span style="font-size:13px;color:#6e6e73">{{ st.st }}</span>
+          </div>
+        </sc-for>
+        <div style="display:grid;gap:8px">
+          <sc-if value="{{ pr.done }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:13px;color:#6e6e73">AI draft ready</span>
+            <span style="font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.4">{{ pr.headline }}</span>
+            <span style="font-size:13px;color:#6e6e73">{{ pr.flagLine }}</span>
+          </sc-if>
+          <sc-if value="{{ pr.working }}" hint-placeholder-val="{{ true }}">
+            <span style="font-size:16px;color:#6e6e73">{{ pr.workingText }}</span>
+          </sc-if>
+          <sc-if value="{{ pr.failed }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0;font-size:16px">Scoring stopped. The scoring service didn't answer in time. The UK draft is kept, so a retry picks up from scoring.</p>
+            <div><button sc-camel-on-click="{{ pr.retry }}" style="height:48px;padding:0 24px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#f5f5f7" style-active="transform:scale(0.98)">Retry scoring</button></div>
+          </sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;gap:24px;align-items:center;border-top:1px solid #e8e8ed;padding-top:32px">
+    <sc-if value="{{ canOpenCampaign }}" hint-placeholder-val="{{ false }}">
+      <button sc-camel-on-click="{{ goCampaign }}" style="height:48px;padding:0 24px;background:#1d1d1f;color:#ffffff;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#424245" style-active="transform:scale(0.98)">Open campaign</button>
+    </sc-if>
+    <sc-if value="{{ cannotOpenCampaign }}" hint-placeholder-val="{{ true }}">
+      <button disabled="" style="height:48px;padding:0 24px;background:#e8e8ed;color:#6e6e73;border:1px solid #e8e8ed;border-radius:999px;font-size:16px;cursor:not-allowed">Open campaign</button>
+    </sc-if>
+    <span style="font-size:16px;color:#6e6e73;font-variant-numeric:tabular-nums">{{ procSummary }}</span>
+  </div>
+</main>
+</sc-if>
+
+<!-- CAMPAIGN OVERVIEW -->
+<sc-if value="{{ isCampaign }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="04 Campaign overview" style="max-width:1200px;width:100%;margin:0 auto;padding:88px 48px 128px;display:grid;gap:64px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+    <div style="display:grid;gap:16px">
+      <span style="font-size:13px;color:#6e6e73">Kin campaign</span>
+      <h1 style="margin:0;font-size:56px;line-height:1.05;font-weight:400;letter-spacing:-0.035em">Life admin, handled.</h1>
+      <p style="margin:0;font-size:16px;color:#6e6e73">US master adapted for {{ ovMarketsText }}. Every draft waits for a creative director.</p>
+    </div>
+    <button sc-camel-on-click="{{ goBrief }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">View brief</button>
+  </div>
+
+  <section style="display:grid;gap:16px">
+    <h2 style="margin:0;font-size:16px;font-weight:400">Brief-level flag</h2>
+    <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:32px;border-top:1px solid #e8e8ed;padding-top:16px">
+      <span style="font-size:16px">Medium</span>
+      <div style="display:grid;gap:8px;max-width:66ch">
+        <p style="margin:0;font-size:16px;text-wrap:pretty">Check: the master CTA says 'free' without the 14-day trial length. The mandatories ask for it wherever 'free' appears, so every market inherits this.</p>
+        <p style="margin:0;font-size:13px;color:#6e6e73">Cites Brief · Mandatories: "Free trial is 14 days: state the length wherever 'free' appears."</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:16px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+      <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">Drift from the master</h2>
+      <span style="font-size:13px;color:#6e6e73">Advisory. 2 kept, 1 changed, 0 lost.</span>
+    </div>
+    <div role="table" style="display:grid">
+      <div role="row" style="display:grid;grid-template-columns:170px repeat(5,minmax(0,1fr)) 200px 110px 110px;gap:16px;padding-bottom:12px;align-items:end">
+        <span role="columnheader" style="font-size:13px;color:#6e6e73">Market</span>
+        <sc-for list="{{ critNames }}" as="cn" hint-placeholder-count="5"><span role="columnheader" style="font-size:13px;color:#6e6e73;text-align:center">{{ cn.name }}</span></sc-for>
+        <span role="columnheader" style="font-size:13px;color:#6e6e73">Flags</span>
+        <span role="columnheader" style="font-size:13px;color:#6e6e73">Status</span>
+        <span role="columnheader" style="font-size:13px;color:#6e6e73"></span>
+      </div>
+      <sc-for list="{{ ovRows }}" as="r" hint-placeholder-count="3">
+        <div role="row" style="display:grid;grid-template-columns:170px repeat(5,minmax(0,1fr)) 200px 110px 110px;gap:16px;padding:20px 0;border-top:1px solid #e8e8ed;align-items:start">
+          <div style="display:grid;gap:4px">
+            <span style="font-size:18px">{{ r.name }}</span>
+            <sc-if value="{{ r.lowConf }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#6e6e73">Low confidence</span></sc-if>
+            <sc-if value="{{ r.stale }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#6e6e73">Scores out of date</span></sc-if>
+          </div>
+          <sc-if value="{{ r.ready }}" hint-placeholder-val="{{ true }}">
+            <sc-for list="{{ r.scores }}" as="sc" hint-placeholder-count="5"><span role="cell" style="font-size:18px;text-align:center;font-variant-numeric:tabular-nums">{{ sc.v }}</span></sc-for>
+            <div role="cell" style="display:grid;gap:4px">
+              <span style="font-size:16px;font-variant-numeric:tabular-nums">{{ r.flagsText }}</span>
+              <sc-if value="{{ r.hasHighOpen }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:oklch(0.55 0.2 29)">{{ r.highOpenText }}</span></sc-if>
+            </div>
+            <span role="cell" style="font-size:16px">{{ r.status }}</span>
+            <div role="cell"><button sc-camel-on-click="{{ r.open }}" style="height:40px;padding:0 16px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#f5f5f7" style-active="transform:scale(0.98)">Review</button></div>
+          </sc-if>
+          <sc-if value="{{ r.notReady }}" hint-placeholder-val="{{ false }}">
+            <div style="grid-column:span 8;display:flex;gap:24px;align-items:center">
+              <span style="font-size:16px">{{ r.notReadyText }}</span>
+              <sc-if value="{{ r.failed }}" hint-placeholder-val="{{ false }}">
+                <button sc-camel-on-click="{{ r.retry }}" style="height:40px;padding:0 16px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#f5f5f7" style-active="transform:scale(0.98)">Retry scoring</button>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<!-- MARKET REVIEW -->
+<sc-if value="{{ isReview }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="05 Market review" style="max-width:1200px;width:100%;margin:0 auto;padding:64px 48px 128px;display:grid;gap:64px">
+  <div style="display:grid;gap:24px">
+    <div style="display:flex;gap:32px;align-items:baseline">
+      <button sc-camel-on-click="{{ goCampaign }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Campaign</button>
+      <sc-for list="{{ reviewTabs }}" as="t" hint-placeholder-count="3">
+        <button sc-camel-on-click="{{ t.go }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;cursor:pointer;text-decoration:{{ t.deco }};text-underline-offset:6px">{{ t.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px">
+      <h1 style="margin:0;font-size:56px;line-height:1.05;font-weight:400;letter-spacing:-0.035em">{{ rv.name }}</h1>
+      <div style="display:flex;gap:16px;align-items:baseline">
+        <span style="font-size:13px;color:#6e6e73">Status</span>
+        <span style="font-size:18px">{{ rv.status }}</span>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ rv.notReady }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;gap:16px;border:1px solid #d2d2d7;border-radius:20px;padding:32px;background:#f5f5f7;border-color:#f5f5f7;max-width:760px">
+      <p style="margin:0;font-size:16px">{{ rv.notReadyText }}</p>
+      <sc-if value="{{ rv.failed }}" hint-placeholder-val="{{ false }}"><div><button sc-camel-on-click="{{ rv.retry }}" style="height:48px;padding:0 24px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer">Retry scoring</button></div></sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ rv.ready }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ rv.lowConf }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:32px;border:1px solid #d2d2d7;border-radius:16px;padding:24px 28px">
+      <span style="font-size:16px">Low confidence</span>
+      <p style="margin:0;font-size:16px;max-width:66ch;text-wrap:pretty">There's no curated guidance for family occasions in Nigeria, so the line about the family group chat and the wedding was drafted without it. Your judgement matters most on that line.</p>
+    </div>
+  </sc-if>
+
+  <section style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px">
+    <div style="display:grid;gap:16px;align-content:start">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;height:24px">
+        <span style="font-size:13px;color:#6e6e73">US master · source</span>
+      </div>
+      <div style="display:grid;gap:24px;padding:40px;border:1px solid #e8e8ed;border-radius:20px;font-family:'Newsreader',Georgia,serif">
+        <p style="margin:0;font-size:28px;line-height:1.2;text-wrap:balance;color:#6e6e73">{{ master.headline }}</p>
+        <p style="margin:0;font-size:18px;line-height:1.4;text-wrap:pretty;color:#6e6e73">{{ master.body }}</p>
+        <p style="margin:0;font-size:18px;color:#6e6e73">{{ master.cta }}</p>
+        <p style="margin:0;font-size:16px;color:#6e6e73">{{ master.legal }}</p>
+      </div>
+    </div>
+
+    <div style="display:grid;gap:16px;align-content:start">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;height:24px">
+        <span style="font-size:13px;color:#6e6e73">{{ rv.name }} variant</span>
+        <span style="font-size:13px;color:#1d1d1f">{{ rv.prov }}</span>
+      </div>
+      <sc-if value="{{ rv.showCopy }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;gap:24px;padding:40px;border:{{ rv.surfaceBorder }};border-radius:20px;background:{{ rv.surface }};font-family:'Newsreader',Georgia,serif;transition:background 200ms ease-out">
+          <p style="margin:0;font-size:28px;line-height:1.2;text-wrap:balance"><sc-for list="{{ rv.headline }}" as="sg"><sc-if value="{{ sg.isPlain }}"><span>{{ sg.t }}</span></sc-if><sc-if value="{{ sg.isChange }}"><span role="button" tabindex="0" aria-pressed="{{ sg.pressed }}" sc-camel-on-click="{{ sg.pick }}" sc-camel-on-key-down="{{ sg.key }}" style="background:{{ sg.bg }};color:{{ sg.fg }};border-bottom:1px solid #1d1d1f;padding:1px 3px;border-radius:4px;cursor:pointer;box-decoration-break:clone;-webkit-box-decoration-break:clone;transition:background 150ms ease-out">{{ sg.t }}</span></sc-if></sc-for></p>
+          <p style="margin:0;font-size:18px;line-height:1.4;text-wrap:pretty"><sc-for list="{{ rv.body }}" as="sg"><sc-if value="{{ sg.isPlain }}"><span>{{ sg.t }}</span></sc-if><sc-if value="{{ sg.isChange }}"><span role="button" tabindex="0" aria-pressed="{{ sg.pressed }}" sc-camel-on-click="{{ sg.pick }}" sc-camel-on-key-down="{{ sg.key }}" style="background:{{ sg.bg }};color:{{ sg.fg }};border-bottom:1px solid #1d1d1f;padding:1px 3px;border-radius:4px;cursor:pointer;box-decoration-break:clone;-webkit-box-decoration-break:clone;transition:background 150ms ease-out">{{ sg.t }}</span></sc-if></sc-for></p>
+          <p style="margin:0;font-size:18px"><sc-for list="{{ rv.cta }}" as="sg"><sc-if value="{{ sg.isPlain }}"><span>{{ sg.t }}</span></sc-if><sc-if value="{{ sg.isChange }}"><span role="button" tabindex="0" aria-pressed="{{ sg.pressed }}" sc-camel-on-click="{{ sg.pick }}" sc-camel-on-key-down="{{ sg.key }}" style="background:{{ sg.bg }};color:{{ sg.fg }};border-bottom:1px solid #1d1d1f;padding:1px 3px;border-radius:4px;cursor:pointer;transition:background 150ms ease-out">{{ sg.t }}</span></sc-if></sc-for></p>
+          <p style="margin:0;font-size:16px">{{ master.legal }}</p>
+        </div>
+        <p style="margin:0;font-size:13px;color:#6e6e73">{{ rv.changesLine }}</p>
+        <sc-if value="{{ rv.hasDetail }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:12px;border-top:1px solid #1d1d1f;padding-top:16px">
+            <div style="display:flex;justify-content:space-between;gap:16px;align-items:baseline">
+              <span style="font-size:13px;color:#6e6e73;font-variant-numeric:tabular-nums">{{ rv.detail.n }}</span>
+              <button sc-camel-on-click="{{ rv.closeDetail }}" style="background:none;border:0;padding:0;font-size:13px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Close</button>
+            </div>
+            <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px 16px;font-size:16px">
+              <span style="color:#6e6e73">Was</span><span style="font-family:'Newsreader',Georgia,serif;font-size:18px">{{ rv.detail.was }}</span>
+              <span style="color:#6e6e73">Now</span><span style="font-family:'Newsreader',Georgia,serif;font-size:18px">{{ rv.detail.now }}</span>
+              <span style="color:#6e6e73">Source</span><span>{{ rv.detail.src }}</span>
+              <span></span><span style="color:#6e6e73">{{ rv.detail.text }}</span>
+            </div>
+          </div>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ rv.isEdit }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;gap:24px;padding:40px;border:1px solid #d2d2d7;border-radius:20px;background:#ffffff">
+          <label style="display:grid;gap:8px"><span style="font-size:13px;color:#6e6e73">Headline</span>
+            <textarea rows="2" value="{{ edit.headline }}" sc-camel-on-change="{{ edit.onHeadline }}" style="padding:12px;border:1px solid #d2d2d7;border-radius:12px;font-family:'Newsreader',Georgia,serif;font-size:28px;line-height:1.2;resize:vertical"></textarea></label>
+          <label style="display:grid;gap:8px"><span style="font-size:13px;color:#6e6e73">Body</span>
+            <textarea rows="6" value="{{ edit.body }}" sc-camel-on-change="{{ edit.onBody }}" style="padding:12px;border:1px solid #d2d2d7;border-radius:12px;font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.4;resize:vertical"></textarea></label>
+          <label style="display:grid;gap:8px"><span style="font-size:13px;color:#6e6e73">Call to action</span>
+            <input value="{{ edit.cta }}" sc-camel-on-change="{{ edit.onCta }}" style="height:52px;padding:0 16px;border:1px solid #d2d2d7;border-radius:12px;font-family:'Newsreader',Georgia,serif;font-size:18px"></label>
+          <p style="margin:0;font-size:16px;font-family:'Newsreader',Georgia,serif;color:#6e6e73">{{ master.legal }}</p>
+          <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+            <button sc-camel-on-click="{{ edit.save }}" style="height:48px;padding:0 24px;background:#1d1d1f;color:#ffffff;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#424245" style-active="transform:scale(0.98)">Save edits</button>
+            <button sc-camel-on-click="{{ edit.cancel }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Cancel</button>
+            <span style="font-size:13px;color:#6e6e73">The legal line stays word for word. Saving marks the scores out of date.</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:16px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+      <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">Flags</h2>
+      <span style="font-size:13px;color:#6e6e73">{{ rv.flagSummary }}</span>
+    </div>
+    <sc-for list="{{ rv.flags }}" as="fl" hint-placeholder-count="2">
+      <div style="display:grid;grid-template-columns:180px minmax(0,1fr) 280px;gap:32px;border-top:{{ fl.rule }};padding-top:16px;padding-bottom:8px">
+        <div style="display:grid;gap:4px;align-content:start">
+          <span style="font-size:16px;color:{{ fl.sevColor }}">{{ fl.sev }}</span>
+          <span style="font-size:13px;color:{{ fl.stateColor }}">{{ fl.stateLabel }}</span>
+        </div>
+        <div style="display:grid;gap:8px;align-content:start;max-width:66ch">
+          <p style="margin:0;font-size:16px;text-wrap:pretty">{{ fl.text }}</p>
+          <p style="margin:0;font-size:13px;color:#6e6e73">Cites {{ fl.cite }}: {{ fl.citeText }}</p>
+          <sc-if value="{{ fl.hasReason }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:13px;color:#6e6e73">Reason: {{ fl.reason }}</p></sc-if>
+          <sc-if value="{{ fl.hasChange }}" hint-placeholder-val="{{ false }}"><div><button sc-camel-on-click="{{ fl.showChange }}" style="background:none;border:0;padding:0;font-size:13px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Show in copy</button></div></sc-if>
+          <sc-if value="{{ fl.dismissing }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;gap:8px;padding-top:8px">
+              <label for="{{ fl.inputId }}" style="font-size:16px">Why dismiss this? Your reason goes in the decision log.</label>
+              <textarea id="{{ fl.inputId }}" rows="2" value="{{ fl.dText }}" sc-camel-on-change="{{ fl.onDText }}" style="padding:12px;border:1px solid #d2d2d7;border-radius:12px;font-size:16px;line-height:1.4;resize:vertical"></textarea>
+              <div style="display:flex;gap:24px;align-items:center">
+                <sc-if value="{{ fl.canConfirm }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ fl.confirmDismiss }}" style="height:48px;padding:0 24px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#f5f5f7" style-active="transform:scale(0.98)">Dismiss flag</button></sc-if>
+                <sc-if value="{{ fl.cannotConfirm }}" hint-placeholder-val="{{ true }}"><button disabled="" style="height:48px;padding:0 24px;background:#e8e8ed;color:#6e6e73;border:1px solid #e8e8ed;border-radius:999px;font-size:16px;cursor:not-allowed">Dismiss flag</button></sc-if>
+                <button sc-camel-on-click="{{ fl.cancelDismiss }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Cancel</button>
+                <sc-if value="{{ fl.cannotConfirm }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;color:#6e6e73">Add a reason to dismiss.</span></sc-if>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="display:flex;gap:24px;align-items:center;justify-content:flex-end;align-self:start">
+          <sc-if value="{{ fl.showActions }}" hint-placeholder-val="{{ true }}">
+            <button sc-camel-on-click="{{ fl.ack }}" style="height:48px;padding:0 20px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#f5f5f7" style-active="transform:scale(0.98)">Acknowledge</button>
+            <button sc-camel-on-click="{{ fl.dismiss }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Dismiss</button>
+          </sc-if>
+          <sc-if value="{{ fl.resolved }}" hint-placeholder-val="{{ false }}">
+            <button sc-camel-on-click="{{ fl.undo }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Undo</button>
+          </sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="display:grid;gap:16px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+      <div style="display:flex;gap:16px;align-items:baseline">
+        <h2 style="margin:0;font-size:16px;font-weight:400">Scores</h2>
+        <span style="font-size:13px;color:#6e6e73;border:1px solid #d2d2d7;border-radius:999px;padding:2px 10px">Advisory</span>
+      </div>
+      <span style="font-size:13px;color:#6e6e73">Out of 2. Scores never block approval.</span>
+    </div>
+    <sc-if value="{{ rv.stale }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;border:1px solid #d2d2d7;border-radius:16px;padding:20px 28px">
+        <p style="margin:0;font-size:16px;flex:1 1 360px">{{ rv.staleText }}</p>
+        <sc-if value="{{ rv.canRescore }}" hint-placeholder-val="{{ false }}">
+          <button sc-camel-on-click="{{ rv.rescore }}" style="height:48px;padding:0 20px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;font-variant-numeric:tabular-nums" style-hover="background:#f5f5f7">{{ rv.rescoreLabel }}</button>
+        </sc-if>
+        <sc-if value="{{ rv.rescoring }}" hint-placeholder-val="{{ false }}"><span style="font-size:16px;color:#6e6e73">Rescoring…</span></sc-if>
+      </div>
+    </sc-if>
+    <div style="display:grid">
+      <sc-for list="{{ rv.scores }}" as="s" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:180px 48px minmax(0,1fr);gap:32px;border-top:1px solid #e8e8ed;padding:10px 0;color:{{ s.color }}">
+          <span style="font-size:13px">{{ s.name }}</span>
+          <span style="font-size:13px;font-variant-numeric:tabular-nums">{{ s.v }}</span>
+          <span style="font-size:13px">{{ s.reason }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:16px;border-top:1px solid #1d1d1f;padding-top:32px">
+    <sc-if value="{{ rv.undecided }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+        <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">Your decision</h2>
+        <span style="font-size:13px;color:#6e6e73">Approve, edit or reject. Nothing is published from here.</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+        <sc-for list="{{ rv.decisionBtns }}" as="db" hint-placeholder-count="3">
+          <div style="display:grid;gap:8px;align-content:start">
+            <button sc-camel-on-click="{{ db.go }}" aria-pressed="{{ db.pressed }}" style="height:56px;background:{{ db.bg }};color:{{ db.fg }};border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 150ms ease-out,color 150ms ease-out">{{ db.label }}</button>
+            <span style="font-size:13px;color:{{ db.helpColor }}">{{ db.help }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ rv.isApprove }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;gap:16px;padding-top:16px;max-width:760px">
+          <label for="cd-name" style="font-size:16px">Your name</label>
+          <input id="cd-name" value="{{ cdName }}" sc-camel-on-change="{{ onName }}" placeholder="Creative director's full name" style="height:52px;padding:0 16px;border:1px solid #d2d2d7;border-radius:12px;font-size:16px;max-width:400px">
+          <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+            <sc-if value="{{ rv.canApprove }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ rv.approve }}" style="height:48px;padding:0 24px;background:#1d1d1f;color:#ffffff;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#424245" style-active="transform:scale(0.98)">Confirm approval</button></sc-if>
+            <sc-if value="{{ rv.cannotApprove }}" hint-placeholder-val="{{ true }}"><button disabled="" style="height:48px;padding:0 24px;background:#e8e8ed;color:#6e6e73;border:1px solid #e8e8ed;border-radius:999px;font-size:16px;cursor:not-allowed">Confirm approval</button></sc-if>
+            <span style="font-size:16px;color:{{ rv.approveMsgColor }};max-width:52ch">{{ rv.approveMsg }}</span>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ rv.isReject }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;gap:16px;padding-top:16px;max-width:760px">
+          <label for="rej" style="font-size:16px">Why reject this draft? The reason goes in the decision log.</label>
+          <textarea id="rej" rows="3" value="{{ rejectText }}" sc-camel-on-change="{{ onReject }}" style="padding:12px;border:1px solid #d2d2d7;border-radius:12px;font-size:16px;line-height:1.4;resize:vertical"></textarea>
+          <div style="display:flex;gap:24px;align-items:center">
+            <sc-if value="{{ rv.canReject }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ rv.reject }}" style="height:48px;padding:0 24px;background:#1d1d1f;color:#ffffff;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#424245" style-active="transform:scale(0.98)">Confirm rejection</button></sc-if>
+            <sc-if value="{{ rv.cannotReject }}" hint-placeholder-val="{{ true }}"><button disabled="" style="height:48px;padding:0 24px;background:#e8e8ed;color:#6e6e73;border:1px solid #e8e8ed;border-radius:999px;font-size:16px;cursor:not-allowed">Confirm rejection</button></sc-if>
+            <sc-if value="{{ rv.cannotReject }}" hint-placeholder-val="{{ true }}"><span style="font-size:16px;color:#6e6e73">Add a reason to reject.</span></sc-if>
+          </div>
+        </div>
+      </sc-if>
+    </sc-if>
+    <sc-if value="{{ rv.decided }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+        <div style="display:grid;gap:8px">
+          <p style="margin:0;font-size:28px;line-height:1.2">{{ rv.decisionLine }}</p>
+          <sc-if value="{{ rv.hasDecisionReason }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:16px;color:#6e6e73">Reason: {{ rv.decisionReason }}</p></sc-if>
+        </div>
+        <div style="display:flex;gap:24px;align-items:center">
+          <button sc-camel-on-click="{{ rv.undo }}" style="height:48px;padding:0 24px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#f5f5f7" style-active="transform:scale(0.98)">Undo, back to Draft</button>
+          <sc-if value="{{ rv.hasNext }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ rv.next }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">{{ rv.nextLabel }}</button></sc-if>
+          <button sc-camel-on-click="{{ goHandoff }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Go to handoff</button>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+  </sc-if>
+</main>
+</sc-if>
+
+<!-- HANDOFF -->
+<sc-if value="{{ isHandoff }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="06 Handoff" style="max-width:1200px;width:100%;margin:0 auto;padding:88px 48px 128px;display:grid;gap:80px">
+  <div style="display:grid;gap:16px">
+    <h1 style="margin:0;font-size:56px;line-height:1.05;font-weight:400;letter-spacing:-0.035em">Handoff</h1>
+    <p style="margin:0;font-size:16px;color:#6e6e73">Only copy a creative director approved appears here. Take it to your usual tools.</p>
+  </div>
+
+  <sc-if value="{{ hoEmpty }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;gap:16px;border:1px solid #d2d2d7;border-radius:20px;padding:32px;background:#f5f5f7;border-color:#f5f5f7;max-width:760px">
+      <p style="margin:0;font-size:18px">Nothing approved yet.</p>
+      <p style="margin:0;font-size:16px;color:#6e6e73">Approve a variant in review and its copy appears here, ready to copy or download.</p>
+      <div><button sc-camel-on-click="{{ goCampaign }}" style="height:48px;padding:0 24px;background:#1d1d1f;color:#ffffff;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#424245" style-active="transform:scale(0.98)">Go to campaign review</button></div>
+    </div>
+  </sc-if>
+
+  <sc-for list="{{ hoApproved }}" as="ap" hint-placeholder-count="0">
+    <section style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:48px">
+      <div style="grid-column:span 4;display:grid;gap:8px;align-content:start">
+        <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">{{ ap.name }}</h2>
+        <span style="font-size:13px;color:#6e6e73">Approved by {{ ap.by }}, {{ ap.at }}</span>
+        <div style="display:flex;gap:24px;align-items:center;padding-top:16px;flex-wrap:wrap">
+          <button sc-camel-on-click="{{ ap.copy }}" style="height:48px;padding:0 20px;background:#ffffff;color:#1d1d1f;border:1px solid #1d1d1f;border-radius:999px;font-size:16px;cursor:pointer;transition:background 200ms ease-out,transform 200ms ease-out" style-hover="background:#f5f5f7" style-active="transform:scale(0.98)">Copy to clipboard</button>
+          <button sc-camel-on-click="{{ ap.download }}" style="background:none;border:0;padding:0;font-size:16px;color:#1d1d1f;text-decoration:underline;text-underline-offset:3px;cursor:pointer">Download .txt</button>
+        </div>
+        <span role="status" style="font-size:13px;color:#6e6e73;min-height:18px">{{ ap.msg }}</span>
+      </div>
+      <div style="grid-column:span 8;display:grid;gap:24px;padding:40px;border:1px solid #d2d2d7;border-radius:20px;box-shadow:0 1px 2px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.04);font-family:'Newsreader',Georgia,serif">
+        <p style="margin:0;font-size:28px;line-height:1.2;text-wrap:balance">{{ ap.headline }}</p>
+        <p style="margin:0;font-size:18px;line-height:1.4;text-wrap:pretty">{{ ap.body }}</p>
+        <p style="margin:0;font-size:18px">{{ ap.cta }}</p>
+        <p style="margin:0;font-size:16px">{{ ap.legal }}</p>
+      </div>
+    </section>
+  </sc-for>
+
+  <sc-if value="{{ hoHasOthers }}" hint-placeholder-val="{{ false }}">
+    <div style="display:grid;gap:8px">
+      <sc-for list="{{ hoOthers }}" as="o" hint-placeholder-count="1">
+        <p style="margin:0;font-size:16px;color:#6e6e73">{{ o.text }}</p>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <section style="display:grid;gap:16px">
+    <h2 style="margin:0;font-size:28px;font-weight:400;letter-spacing:-0.02em">Decision log</h2>
+    <div style="display:grid;grid-template-columns:140px 180px 160px 200px minmax(0,1fr);gap:24px;padding-bottom:12px">
+      <span style="font-size:13px;color:#6e6e73">When</span>
+      <span style="font-size:13px;color:#6e6e73">Who</span>
+      <span style="font-size:13px;color:#6e6e73">Market</span>
+      <span style="font-size:13px;color:#6e6e73">Decision</span>
+      <span style="font-size:13px;color:#6e6e73">Detail</span>
+    </div>
+    <sc-if value="{{ logEmpty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:16px;color:#6e6e73;border-top:1px solid #e8e8ed;padding-top:16px">No decisions yet. Every acknowledge, dismiss, edit, approval and rejection lands here with a name and time.</p></sc-if>
+    <sc-for list="{{ logRows }}" as="lg" hint-placeholder-count="3">
+      <div style="display:grid;grid-template-columns:140px 180px 160px 200px minmax(0,1fr);gap:24px;border-top:1px solid #e8e8ed;padding:12px 0">
+        <span style="font-size:16px;font-variant-numeric:tabular-nums;color:#6e6e73">{{ lg.at }}</span>
+        <span style="font-size:16px">{{ lg.who }}</span>
+        <span style="font-size:16px">{{ lg.market }}</span>
+        <span style="font-size:16px">{{ lg.what }}</span>
+        <span style="font-size:16px;color:#6e6e73;text-wrap:pretty">{{ lg.detail }}</span>
+      </div>
+    </sc-for>
+  </section>
+</main>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;showStateBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;runsUsedToday&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0,&quot;max&quot;:5,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Prototype&quot;}}">
+const CODES = ['za','ng','uk'];
+const NAMES = {za:'South Africa', ng:'Nigeria', uk:'United Kingdom'};
+const ACCENT = 'oklch(0.55 0.2 29)';
+const MASTER = {
+  headline:'The admin is handled. The weekend is yours.',
+  body:"Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time that works for the whole group chat. You just say what needs doing. Then go do something better.",
+  cta:'Try Kin free.',
+  legal:'Kin can make mistakes. Check important details.'
+};
+const EX = {
+  proposition:'Life admin, handled.',
+  audience:'Busy adults 25 to 40 who run a job, a household and at least one group chat.',
+  mandatories:"Legal line on every variant, word for word. Free trial is 14 days: state the length wherever 'free' appears.",
+  tone:'Warm, plainspoken, dry, calm. No exclamation marks. Where it builds trust, show how Kin works in one line.',
+  headline:MASTER.headline, body:MASTER.body, cta:MASTER.cta, legal:MASTER.legal
+};
+const EMPTY = {proposition:'',audience:'',mandatories:'',tone:'',headline:'',body:'',cta:'',legal:''};
+const LIMITS = {proposition:60, audience:200, mandatories:300, tone:300, headline:60, body:300, cta:24, legal:80};
+const REQUIRED = ['proposition','headline','body','cta','legal'];
+const LABELS = {proposition:'Proposition',audience:'Audience',mandatories:'Mandatories',tone:'Tone notes',headline:'Headline',body:'Body',cta:'Call to action',legal:'Legal line'};
+const HINTS = {proposition:'The one idea every market must keep.',audience:'Who this is for.',mandatories:'Lines and claims every market must carry.',tone:'How it should sound, beyond the voice guide.',legal:'Carried into every market word for word.'};
+const REQMSG = {proposition:'Add the proposition. One line is enough.',headline:'Add the master headline.',body:'Add the master body copy.',cta:'Add the call to action.',legal:"Add the legal line. It's carried into every market word for word."};
+const S = (t,c) => ({t,c});
+const CRIT = ['Proposition intact','Tone','Humour','Voice signatures','Mandatories'];
+const PLAN = {za:[1400,1200,1000], ng:[1900,1500,1500], uk:[1200,1400,1100]};
+const TOTAL = c => PLAN[c][0]+PLAN[c][1]+PLAN[c][2];
+const UKFAIL = PLAN.uk[0] + PLAN.uk[1]*0.6;
+
+const DATA = {
+  za:{
+    headline:[S('Admin, struck out','z1'), S('. The weekend is yours.')],
+    body:[S("Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time that works for the whole "), S('WhatsApp group','z2'), S('. '), S('It reads your inbox and texts so nothing slips.','z3'), S(' You just say what needs doing. Then go do something '), S('lekker','z4'), S('.')],
+    cta:[S('Try Kin free.')],
+    changes:{
+      z1:{was:'The admin is handled', src:'Market snapshot · ZA-V1', text:"'Handled' reads as American. Local ads favour a shorter, punchier verb."},
+      z2:{was:'group chat', src:'Market snapshot · ZA-M3', text:'WhatsApp is the default group chat for most South Africans.'},
+      z3:{was:'Nothing. This sentence is new.', src:'Brief field · Tone notes', text:'"Where it builds trust, show how Kin works in one line."'},
+      z4:{was:'better', src:'Market snapshot · ZA-V4', text:"'Lekker' means good or enjoyable and is used across languages. Once per ad at most."}
+    },
+    scores:[2,2,1,2,1],
+    reasons:['The admin still gets done for you, and the weekend payoff stays.','Calm and plain throughout.',"'Struck out' swaps dry understatement for an idiom that may not land.",'Short sentences, no exclamation marks, the dry close kept.',"Legal line present. 'Free' appears without the 14-day length."],
+    flags:[
+      {id:'zf1', sev:'High', text:"Check: this claim says Kin reads inboxes and texts. South Africa's POPIA sets rules on processing personal information.", cite:'ZA-C1', citeText:'POPIA: processing personal information needs a lawful basis and a clear purpose. Ads should not overstate data access.', change:'z3'},
+      {id:'zf2', sev:'Medium', text:"Check: 'struck out' loses its baseball meaning here. The humour changed.", cite:'ZA-V2', citeText:"Baseball idioms don't travel. Use plain phrasing or a local reference.", change:'z1'}
+    ],
+    lowConf:false
+  },
+  ng:{
+    headline:[S('The admin is handled. '), S('Your weekend is free.','n1')],
+    body:[S("Kin rebooks the dentist you've dodged since March, "), S('follows up on','n2'), S(' the refund, and finds a time that works for the whole '), S('family WhatsApp group, even before the next wedding','n3'), S('. You just say what needs doing. Then go '), S('and enjoy your Saturday','n4'), S('.')],
+    cta:[S('Try Kin free.')],
+    changes:{
+      n1:{was:'The weekend is yours.', src:'Market snapshot · NG-V1', text:'A direct benefit reads warmer than a possessive in Nigerian English ads.'},
+      n2:{was:'chases', src:'Market snapshot · NG-V2', text:"'Chase' can sound confrontational. 'Follow up' is the everyday phrase."},
+      n3:{was:'group chat', src:'No snapshot entry · NG-G1 (gap)', text:'No curated guidance for family occasions. Drafted from general knowledge.'},
+      n4:{was:'do something better', src:'Brief field · Audience', text:'"Busy adults 25 to 40 who run a job, a household and at least one group chat."'}
+    },
+    scores:[2,2,1,1,1],
+    reasons:['Handled admin and a free weekend are both stated.','Warm and calm.',"'Enjoy your Saturday' is kinder but loses the dry close.","'Even before the next wedding' adds a clause the master wouldn't.","Legal line present. 'Free' appears without the 14-day length."],
+    flags:[
+      {id:'nf1', sev:'Low confidence', text:'No curated guidance for family occasions in Nigeria. Creative director input needed.', cite:'NG-G1', citeText:'Gap: no entry for weddings, naming ceremonies or other family occasions.', change:'n3'},
+      {id:'nf2', sev:'Low', text:"Check: 'follows up on' is softer than 'chases'. Is the dry edge still there?", cite:'NG-V2', citeText:"'Chase' can sound confrontational. 'Follow up' is the everyday phrase.", change:'n2'}
+    ],
+    lowConf:true
+  },
+  uk:{
+    headline:[S('The admin is '), S('sorted','u1'), S('. The weekend is yours.')],
+    body:[S("Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time that works for the whole group chat. You just say what needs doing. Then go "), S('and do','u2'), S(' something better.')],
+    cta:[S('Try Kin '), S('free for 14 days','u3'), S('.')],
+    changes:{
+      u1:{was:'handled', src:'Market snapshot · UK-V1', text:"'Sorted' is the everyday British word for done."},
+      u2:{was:'do', src:'Market snapshot · UK-V3', text:"British English keeps the 'and' in 'go and do'."},
+      u3:{was:'free', src:'Brief field · Mandatories', text:"\"Free trial is 14 days: state the length wherever 'free' appears.\""}
+    },
+    scores:[2,2,2,1,2],
+    reasons:['Unchanged from the master.','Unchanged from the master.','The dry close survives.',"'Free for 14 days' is longer than the master's clipped CTA.","Legal line present. Trial length stated beside 'free'."],
+    flags:[
+      {id:'uf1', sev:'Medium', text:'Check: UK ad rules expect the main conditions of a free trial close to the claim. Does the CTA need the price after 14 days?', cite:'UK-C2', citeText:'CAP Code: significant conditions of a free offer should sit close to the claim.', change:'u3'},
+      {id:'uf2', sev:'Low', text:"Check: 'sorted' is common in UK ads. Does it still sound like Kin?", cite:'UK-V1', citeText:"'Sorted' is the everyday British word for done.", change:'u1'}
+    ],
+    lowConf:false
+  }
+};
+const CDS = {za:'Thandi Mokoena', ng:'Adaeze Okafor', uk:'Hannah Price'};
+const stamp = () => { const d = new Date(); return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'}) + ', ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}); };
+const plain = (c,f) => DATA[c][f].map(x => x.t).join('');
+const mkMarket = c => ({flags:Object.fromEntries(DATA[c].flags.map(f => [f.id,{state:'open'}])), edited:null, stale:false, rescores:0, decision:null});
+const freshMarkets = () => ({za:mkMarket('za'), ng:mkMarket('ng'), uk:mkMarket('uk')});
+const procAt = kind => {
+  const p = {failNext: kind !== 'done'};
+  CODES.forEach(c => { p[c] = {t: kind === 'running' ? 0 : TOTAL(c), failed:false}; });
+  if (kind === 'failed') p.uk = {t:UKFAIL, failed:true};
+  return p;
+};
+
+class Component extends DCLogic {
+  state = {
+    screen:'home', homeState:'first',
+    brief:{...EX}, showErrors:false, runError:false, runsUsed:null, exampleMsg:false, voiceOpen:false,
+    sel:{za:true, ng:true, uk:true},
+    proc:procAt('done'), m:freshMarkets(),
+    market:'za', selChange:null, panel:null, cdName:'', rejectText:'', edit:{headline:'',body:'',cta:''},
+    dismissOpen:null, dismissText:'', log:[], msgs:{}, rescoring:false, preset:'first'
+  };
+
+  componentDidMount() {
+    this.iv = setInterval(() => {
+      const s = this.state; let changed = false, fail = false;
+      const p = {...s.proc};
+      CODES.forEach(c => {
+        if (!s.sel[c]) return;
+        const q = p[c];
+        if (q.failed || q.t >= TOTAL(c)) return;
+        const t = q.t + 100;
+        if (c === 'uk' && p.failNext && q.t < UKFAIL && t >= UKFAIL) { p[c] = {t:UKFAIL, failed:true}; fail = true; }
+        else p[c] = {t:Math.min(t, TOTAL(c)), failed:false};
+        changed = true;
+      });
+      if (changed) this.setState({proc:p});
+    }, 100);
+  }
+  componentWillUnmount() { clearInterval(this.iv); }
+
+  go(screen, extra) { this.setState({screen, ...(extra||{})}); try { window.scrollTo(0,0); } catch(e) {} }
+  used() { return this.state.runsUsed ?? this.props.runsUsedToday ?? 1; }
+  ready(c) { const q = this.state.proc[c]; return !q.failed && q.t >= TOTAL(c); }
+  who() { return this.state.cdName.trim() || 'You'; }
+  addLog(c, what, detail, who) { return [{at:stamp(), who: who || this.who(), market: c ? NAMES[c] : 'All', what, detail: detail || ''}, ...this.state.log]; }
+  setM(c, patch, logArgs) {
+    this.setState(s => ({ m: {...s.m, [c]: {...s.m[c], ...patch}}, ...(logArgs ? {log: this.addLog(c, ...logArgs)} : {}) }));
+  }
+  setFlag(c, id, v, logArgs) {
+    const M = this.state.m[c];
+    this.setM(c, {flags: {...M.flags, [id]: v}}, logArgs);
+  }
+  retryUk() {
+    this.setState(s => ({proc: {...s.proc, failNext:false, uk:{...s.proc.uk, failed:false}}}));
+  }
+
+  decidedState() {
+    const m = freshMarkets();
+    m.za.flags = {zf1:{state:'ack', by:CDS.za, at:'26 Sep, 14:18'}, zf2:{state:'dismissed', by:CDS.za, at:'26 Sep, 14:19', reason:"Checked with the Joburg team. 'Struck out' reads fine locally."}};
+    m.za.decision = {type:'Approved', by:CDS.za, at:'26 Sep, 14:21'};
+    m.uk.flags = {uf1:{state:'ack', by:CDS.uk, at:'26 Sep, 14:40'}, uf2:{state:'ack', by:CDS.uk, at:'26 Sep, 14:40'}};
+    m.uk.decision = {type:'Approved', by:CDS.uk, at:'26 Sep, 14:42'};
+    m.ng.decision = {type:'Rejected', by:CDS.ng, at:'26 Sep, 14:33', reason:'The wedding line needs a local writer. Redraft with the Lagos team.'};
+    const log = [
+      {at:'26 Sep, 14:42', who:CDS.uk, market:'United Kingdom', what:'Approved', detail:''},
+      {at:'26 Sep, 14:40', who:CDS.uk, market:'United Kingdom', what:'Acknowledged 2 flags', detail:'UK-C2, UK-V1'},
+      {at:'26 Sep, 14:33', who:CDS.ng, market:'Nigeria', what:'Rejected', detail:'The wedding line needs a local writer. Redraft with the Lagos team.'},
+      {at:'26 Sep, 14:21', who:CDS.za, market:'South Africa', what:'Approved', detail:''},
+      {at:'26 Sep, 14:19', who:CDS.za, market:'South Africa', what:'Dismissed flag ZA-V2', detail:"Checked with the Joburg team. 'Struck out' reads fine locally."},
+      {at:'26 Sep, 14:18', who:CDS.za, market:'South Africa', what:'Acknowledged flag ZA-C1', detail:'POPIA claim sent to legal for a check.'}
+    ];
+    return {m, log};
+  }
+
+  applyPreset(key) {
+    const base = {preset:key, panel:null, selChange:null, dismissOpen:null, rescoring:false, msgs:{}};
+    const P = {
+      first:   () => this.go('home', {...base, homeState:'first'}),
+      noruns:  () => this.go('home', {...base, homeState:'empty'}),
+      b_empty: () => this.go('brief', {...base, brief:{...EMPTY}, showErrors:false, runError:false, runsUsed:null, exampleMsg:false}),
+      b_ex:    () => this.go('brief', {...base, brief:{...EX}, showErrors:false, runError:false, runsUsed:null, exampleMsg:true}),
+      b_bad:   () => this.go('brief', {...base, brief:{...EX, proposition:'', headline:'The admin is handled, the errands are done, and the weekend is all yours.'}, showErrors:true, runError:false, runsUsed:null}),
+      b_budget:() => this.go('brief', {...base, brief:{...EX}, showErrors:false, runError:false, runsUsed:5}),
+      b_err:   () => this.go('brief', {...base, brief:{...EX}, showErrors:false, runError:true, runsUsed:null}),
+      p_run:   () => this.go('processing', {...base, sel:{za:true,ng:true,uk:true}, proc:procAt('running'), m:freshMarkets()}),
+      p_fail:  () => this.go('processing', {...base, sel:{za:true,ng:true,uk:true}, proc:procAt('failed'), m:freshMarkets()}),
+      p_done:  () => this.go('processing', {...base, sel:{za:true,ng:true,uk:true}, proc:procAt('done'), m:freshMarkets()}),
+      c_drafts:() => this.go('campaign', {...base, sel:{za:true,ng:true,uk:true}, proc:procAt('done'), m:freshMarkets(), log:[]}),
+      c_fail:  () => this.go('campaign', {...base, sel:{za:true,ng:true,uk:true}, proc:procAt('failed'), m:freshMarkets(), log:[]}),
+      c_dec:   () => this.go('campaign', {...base, sel:{za:true,ng:true,uk:true}, proc:procAt('done'), ...this.decidedState()}),
+      r_za:    () => this.go('review', {...base, market:'za', proc:procAt('done'), m:freshMarkets(), cdName:'', log:[]}),
+      r_ng:    () => this.go('review', {...base, market:'ng', proc:procAt('done'), m:freshMarkets(), cdName:'', log:[]}),
+      r_stale: () => { const m = freshMarkets(); m.za = {...m.za, edited:{headline:'Admin, sorted. The weekend is yours.', body:plain('za','body'), cta:'Try Kin free for 14 days.'}, stale:true, rescores:1}; this.go('review', {...base, market:'za', proc:procAt('done'), m, log:[]}); },
+      r_limit: () => { const m = freshMarkets(); m.za = {...m.za, edited:{headline:'Admin, sorted. The weekend is yours.', body:plain('za','body'), cta:'Try Kin free for 14 days.'}, stale:true, rescores:3}; this.go('review', {...base, market:'za', proc:procAt('done'), m, log:[]}); },
+      r_block: () => this.go('review', {...base, market:'za', proc:procAt('done'), m:freshMarkets(), panel:'approve', cdName:CDS.za, log:[]}),
+      r_appr:  () => { const d = this.decidedState(); this.go('review', {...base, market:'za', proc:procAt('done'), ...d}); },
+      h_empty: () => this.go('handoff', {...base, proc:procAt('done'), m:freshMarkets(), log:[]}),
+      h_appr:  () => this.go('handoff', {...base, proc:procAt('done'), ...this.decidedState()})
+    };
+    P[key]();
+  }
+
+  validate() {
+    const b = this.state.brief, e = {};
+    Object.keys(LIMITS).forEach(k => {
+      const n = b[k].length;
+      if (n > LIMITS[k]) e[k] = `${LABELS[k]} is ${n} characters. Cut ${n - LIMITS[k]} to fit ${LIMITS[k]}.`;
+      else if (this.state.showErrors && REQUIRED.includes(k) && !b[k].trim()) e[k] = REQMSG[k];
+    });
+    return e;
+  }
+  hardErrors() {
+    const b = this.state.brief, e = [];
+    Object.keys(LIMITS).forEach(k => { if (b[k].length > LIMITS[k] || (REQUIRED.includes(k) && !b[k].trim())) e.push(LABELS[k]); });
+    if (!CODES.some(c => this.state.sel[c])) e.push('Markets');
+    return e;
+  }
+  run() {
+    if (this.used() >= 5) return;
+    if (this.hardErrors().length) { this.setState({showErrors:true}); return; }
+    this.go('processing', {showErrors:false, runError:false, runsUsed:this.used()+1, proc:procAt('running'), m:freshMarkets(), log:[], market:CODES.find(c => this.state.sel[c]), preset:'p_run'});
+  }
+
+  field(k, rows) {
+    const b = this.state.brief, e = this.validate();
+    return {
+      id:'f-'+k, label:LABELS[k], hint:HINTS[k] || '', hasHint:!!HINTS[k], value:b[k],
+      onChange: ev => { const v = ev.target.value; this.setState(s => ({brief:{...s.brief, [k]:v}, exampleMsg:false})); },
+      count:`${b[k].length} / ${LIMITS[k]}`, error:e[k] || '', hasError:!!e[k],
+      border: e[k] ? '2px solid #1d1d1f' : '1px solid #d2d2d7',
+      isArea:!!rows, isInput:!rows, rows:rows || 1
+    };
+  }
+
+  segs(c, f) {
+    const s = this.state, M = s.m[c];
+    if (M.edited) return [{t:M.edited[f], isPlain:true}];
+    return DATA[c][f].map(x => {
+      if (!x.c) return {t:x.t, isPlain:true};
+      const on = s.selChange === x.c;
+      const pick = () => this.setState({selChange: on ? null : x.c});
+      return {t:x.t, isChange:true, pressed:on ? 'true' : 'false', bg:on ? '#1d1d1f' : '#e8e8ed', fg:on ? '#ffffff' : '#1d1d1f', pick, key: ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); pick(); } }};
+    });
+  }
+
+  review() {
+    const s = this.state, c = s.market, D = DATA[c], M = s.m[c];
+    const q = s.proc[c];
+    const ready = this.ready(c);
+    const flagsOpenHigh = D.flags.filter(f => f.sev === 'High' && M.flags[f.id].state === 'open');
+    const blocked = flagsOpenHigh.length > 0;
+    const dec = M.decision;
+    const segText = id => { for (const f of ['headline','body','cta']) { const x = D[f].find(y => y.c === id); if (x) return x.t; } return ''; };
+    const chIds = Object.keys(D.changes);
+    const ch = s.selChange && D.changes[s.selChange] && !M.edited ? D.changes[s.selChange] : null;
+    const flags = D.flags.map(f => {
+      const st = M.flags[f.id], open = st.state === 'open', hiOpen = f.sev === 'High' && open;
+      const dismissing = s.dismissOpen === f.id;
+      return {
+        sev:f.sev, text:f.text, cite:f.cite, citeText:f.citeText,
+        stateLabel: open ? (hiOpen ? 'Needs a decision before approval' : 'Open') : (st.state === 'ack' ? `Acknowledged by ${st.by}, ${st.at}` : `Dismissed by ${st.by}, ${st.at}`),
+        stateColor: hiOpen ? ACCENT : '#6e6e73', sevColor: hiOpen ? ACCENT : '#1d1d1f',
+        rule: hiOpen ? `2px solid ${ACCENT}` : '1px solid #e8e8ed',
+        hasReason: st.state === 'dismissed', reason: st.reason || '',
+        showActions: open && !dismissing && !dec, resolved: !open && !dec, dismissing: dismissing && open,
+        hasChange: !!f.change && !M.edited, showChange: () => this.setState({selChange:f.change}),
+        ack: () => this.setFlag(c, f.id, {state:'ack', by:this.who(), at:stamp()}, ['Acknowledged flag '+f.cite, '']),
+        dismiss: () => this.setState({dismissOpen:f.id, dismissText:''}),
+        inputId:'d-'+f.id, dText:s.dismissText, onDText: ev => this.setState({dismissText:ev.target.value}),
+        canConfirm: !!s.dismissText.trim(), cannotConfirm: !s.dismissText.trim(),
+        confirmDismiss: () => { const r = s.dismissText.trim(); this.setState({dismissOpen:null, dismissText:''}); this.setFlag(c, f.id, {state:'dismissed', by:this.who(), at:stamp(), reason:r}, ['Dismissed flag '+f.cite, r]); },
+        cancelDismiss: () => this.setState({dismissOpen:null, dismissText:''}),
+        undo: () => this.setFlag(c, f.id, {state:'open'}, ['Reopened flag '+f.cite, ''])
+      };
+    });
+    const sevCount = n => D.flags.filter(f => f.sev === n || (n === 'Low' && f.sev === 'Low confidence')).length;
+    const stale = M.stale, left = 3 - M.rescores;
+    const panel = dec ? null : s.panel;
+    const btn = (key, label, help, helpColor) => ({label, help, helpColor, pressed: panel === key ? 'true' : 'false', bg: panel === key ? '#1d1d1f' : '#ffffff', fg: panel === key ? '#ffffff' : '#1d1d1f',
+      go: () => { if (key === 'edit' && panel !== 'edit') { this.setState({panel:'edit', edit:{headline: M.edited ? M.edited.headline : plain(c,'headline'), body: M.edited ? M.edited.body : plain(c,'body'), cta: M.edited ? M.edited.cta : plain(c,'cta')}}); } else this.setState({panel: panel === key ? null : key}); }});
+    const nm = s.cdName.trim();
+    const idx = CODES.indexOf(c), nextC = CODES.slice(idx+1).concat(CODES.slice(0, idx)).find(x => s.sel[x] && !s.m[x].decision && this.ready(x));
+    const hiNames = flagsOpenHigh.map(f => f.cite).join(', ');
+    return {
+      name:NAMES[c], ready, notReady:!ready, failed:q.failed,
+      notReadyText: q.failed ? 'Scoring stopped for this market. The draft is kept. Retry to pick up from scoring.' : 'This market is still drafting. It appears here when it finishes.',
+      retry: () => this.retryUk(),
+      status: dec ? dec.type : 'Draft', lowConf:D.lowConf,
+      prov: dec && dec.type === 'Approved' ? `Approved by ${dec.by}, ${dec.at}` : (M.edited ? 'AI draft, edited by you' : 'AI draft'),
+      surface: dec && dec.type === 'Approved' ? '#ffffff' : '#f5f5f7',
+      surfaceBorder: dec && dec.type === 'Approved' ? '1px solid #d2d2d7' : '1px solid #f5f5f7',
+      showCopy: panel !== 'edit', isEdit: panel === 'edit',
+      headline:this.segs(c,'headline'), body:this.segs(c,'body'), cta:this.segs(c,'cta'),
+      changesLine: M.edited ? 'Edited by you. Change marks are cleared after an edit. The original draft is in the decision log.' : `${chIds.length} changes from the master are marked. Select one to see where it came from.`,
+      hasDetail:!!ch,
+      detail: ch ? {n:`Change ${chIds.indexOf(s.selChange)+1} of ${chIds.length}`, was:ch.was, now:segText(s.selChange), src:ch.src, text:ch.text} : {n:'',was:'',now:'',src:'',text:''},
+      closeDetail: () => this.setState({selChange:null}),
+      flags,
+      flagSummary: `${sevCount('High')} High · ${sevCount('Medium')} Medium · ${sevCount('Low')} Low` + (blocked ? ` · ${flagsOpenHigh.length} high open` : ''),
+      stale, canRescore: stale && left > 0 && !s.rescoring, rescoring: s.rescoring,
+      rescoreLabel: `Rescore (${left} of 3 left)`,
+      staleText: left > 0 ? 'These scores are for the draft before your edit, so they may be out of date. They stay advisory either way.' : "You've used all 3 rescores for this variant. The scores stay out of date. They're advisory, so you can still approve.",
+      rescore: () => { this.setState({rescoring:true}); setTimeout(() => { this.setState({rescoring:false}); this.setM(c, {stale:false, rescores:M.rescores+1}, ['Rescored', `${M.rescores+1} of 3 used`]); }, 900); },
+      scores: CRIT.map((n,i) => ({name:n, v:String(D.scores[i]), reason:D.reasons[i], color: stale ? '#6e6e73' : '#1d1d1f'})),
+      undecided: !dec, decided: !!dec,
+      decisionBtns: [
+        btn('approve', 'Approve', blocked ? `${flagsOpenHigh.length} high flag needs a decision first.` : 'Needs your name.', blocked ? ACCENT : '#6e6e73'),
+        btn('edit', 'Edit', 'Change the copy inline.', '#6e6e73'),
+        btn('reject', 'Reject', 'Needs a reason.', '#6e6e73')
+      ],
+      isApprove: panel === 'approve', isReject: panel === 'reject',
+      canApprove: !blocked && !!nm, cannotApprove: blocked || !nm,
+      approveMsg: blocked ? `Approval is waiting on the high flag ${hiNames}. Acknowledge or dismiss it in Flags above. The score doesn't affect this.` : (!nm ? 'Add your name to approve. It goes in the decision log with the time.' : 'Your name and the time go in the decision log.'),
+      approveMsgColor: blocked ? ACCENT : '#6e6e73',
+      approve: () => { const at = stamp(); this.setState(st => ({panel:null, m:{...st.m, [c]:{...st.m[c], decision:{type:'Approved', by:nm, at}}}, log:[{at, who:nm, market:NAMES[c], what:'Approved', detail: st.m[c].edited ? 'Approved with edits' : ''}, ...st.log.map(l => l.who === 'You' && l.market === NAMES[c] ? {...l, who:nm} : l)]})); },
+      canReject: !!s.rejectText.trim(), cannotReject: !s.rejectText.trim(),
+      reject: () => { const r = s.rejectText.trim(); this.setState({panel:null, rejectText:''}); this.setM(c, {decision:{type:'Rejected', by:this.who(), at:stamp(), reason:r}}, ['Rejected', r]); },
+      decisionLine: dec ? `${dec.type} by ${dec.by}, ${dec.at}.` : '',
+      hasDecisionReason: !!(dec && dec.reason), decisionReason: dec && dec.reason || '',
+      undo: () => this.setM(c, {decision:null}, ['Returned to Draft', 'Undid ' + (dec ? dec.type.toLowerCase() : '')]),
+      hasNext: !!nextC, nextLabel: nextC ? `Next: ${NAMES[nextC]}` : '', next: () => this.go('review', {market:nextC, selChange:null, panel:null})
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const used = this.used();
+    const screens = [['Home','home','first'],['Brief','brief','b_ex'],['Processing','processing','p_run'],['Campaign','campaign',null],['Review','review',null],['Handoff','handoff',null]];
+    const nav = screens.map(([label, key]) => ({label, current: s.screen === key ? 'page' : 'false', deco: s.screen === key ? 'underline' : 'none',
+      go: () => this.go(key, key === 'processing' && s.preset === 'first' ? {proc:procAt('running'), m:freshMarkets()} : {})}));
+    const PRE = {
+      home:[['First visit','first'],['No runs measured yet','noruns']],
+      brief:[['Empty','b_empty'],['Example loaded','b_ex'],['Needs fixes','b_bad'],['Runs used up','b_budget'],["Run didn't start",'b_err']],
+      processing:[['Running','p_run'],['One market failed','p_fail'],['All done','p_done']],
+      campaign:[['Drafts ready','c_drafts'],['One market failed','c_fail'],['Decisions made','c_dec']],
+      review:[['South Africa, high flag','r_za'],['Nigeria, low confidence','r_ng'],['Score out of date','r_stale'],['Rescore limit reached','r_limit'],['Approve blocked','r_block'],['Approved','r_appr']],
+      handoff:[['Nothing approved','h_empty'],['Approved copy','h_appr']]
+    };
+    const stateLinks = (PRE[s.screen] || []).map(([label, key]) => ({label, deco: s.preset === key ? 'underline' : 'none', go: () => this.applyPreset(key)}));
+
+    const hard = this.hardErrors();
+    const selCodes = CODES.filter(c => s.sel[c]);
+    const procRows = selCodes.map(c => {
+      const q = s.proc[c]; let start = 0;
+      const steps = ['Drafting','Scoring','Flagging'].map((label, i) => {
+        const d = PLAN[c][i], s0 = start; start += d;
+        let st, pct;
+        if (q.t >= s0 + d) { st = 'Done'; pct = 100; }
+        else if (q.failed && q.t >= s0) { st = 'Stopped'; pct = Math.round((q.t - s0) / d * 100); }
+        else if (q.t > s0) { st = 'Working'; pct = Math.round((q.t - s0) / d * 100); }
+        else { st = 'Waiting'; pct = 0; }
+        return {st, pct: pct + '%'};
+      });
+      const done = this.ready(c);
+      const D = DATA[c];
+      return {name:NAMES[c], steps, done, failed:q.failed, working:!done && !q.failed,
+        workingText: q.t > 0 ? 'Working. Other markets carry on.' : 'Waiting to start.',
+        headline: plain(c,'headline'), flagLine: `${D.flags.length} flags to check` + (D.lowConf ? ' · Low confidence' : ''),
+        retry: () => this.retryUk()};
+    });
+    const doneN = selCodes.filter(c => this.ready(c)).length;
+    const failN = selCodes.filter(c => s.proc[c].failed).length;
+
+    const ovRows = selCodes.map(c => {
+      const D = DATA[c], M = s.m[c], q = s.proc[c], ready = this.ready(c);
+      const cnt = n => D.flags.filter(f => f.sev === n || (n === 'Low' && f.sev === 'Low confidence')).length;
+      const hiOpen = D.flags.filter(f => f.sev === 'High' && M.flags[f.id].state === 'open').length;
+      return {name:NAMES[c], ready, notReady:!ready, failed:q.failed, lowConf:D.lowConf && ready, stale:M.stale && ready,
+        notReadyText: q.failed ? 'Scoring stopped. The draft is kept.' : 'Still drafting. This row fills in when it finishes.',
+        retry: () => this.retryUk(),
+        scores: D.scores.map(v => ({v:String(v)})),
+        flagsText:`${cnt('High')} High · ${cnt('Medium')} Med · ${cnt('Low')} Low`,
+        hasHighOpen: hiOpen > 0, highOpenText: `${hiOpen} high flag open`,
+        status: M.decision ? M.decision.type : 'Draft',
+        open: () => this.go('review', {market:c, selChange:null, panel:null})};
+    });
+
+    const approved = CODES.filter(c => s.m[c].decision && s.m[c].decision.type === 'Approved' && s.sel[c]);
+    const text = c => { const M = s.m[c]; return M.edited ? {headline:M.edited.headline, body:M.edited.body, cta:M.edited.cta} : {headline:plain(c,'headline'), body:plain(c,'body'), cta:plain(c,'cta')}; };
+    const hoApproved = approved.map(c => {
+      const t = text(c), d = s.m[c].decision;
+      const txt = `Kin · ${NAMES[c]}\nApproved by ${d.by}, ${d.at}\n\n${t.headline}\n\n${t.body}\n\n${t.cta}\n\n${MASTER.legal}\n`;
+      const say = m => this.setState(st => ({msgs:{...st.msgs, [c]:m}}));
+      return {name:NAMES[c], by:d.by, at:d.at, ...t, legal:MASTER.legal, msg: s.msgs[c] || '',
+        copy: () => { say('Copying…'); const p = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(txt) : Promise.reject(); p.then(() => say('Copied. Paste it wherever you work.'), () => say("Couldn't reach the clipboard. Select the copy on the right and press Ctrl+C.")); },
+        download: () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], {type:'text/plain'})); a.download = `kin-${c}-approved.txt`; document.body.appendChild(a); a.click(); a.remove(); say(`Downloaded kin-${c}-approved.txt.`); }};
+    });
+    const hoOthers = selCodes.filter(c => !approved.includes(c)).map(c => {
+      const d = s.m[c].decision;
+      return {text: d ? `${NAMES[c]}: rejected by ${d.by}. Not included.` : `${NAMES[c]}: still a draft. It appears here once approved.`};
+    });
+
+    const reqs = [
+      {label:'Proposition', rule:'Required · up to 60'},
+      {label:'Headline', rule:'Required · up to 60'},
+      {label:'Body', rule:'Required · up to 300'},
+      {label:'Call to action', rule:'Required · up to 24'},
+      {label:'Legal line', rule:'Required · kept word for word'},
+      {label:'Audience, mandatories, tone', rule:'Optional · up to 300'},
+      {label:'Markets', rule:'At least one'}
+    ];
+    const M = s.m[s.market];
+    const rv = this.review();
+
+    return {
+      nav, stateLinks, showStateBar: this.props.showStateBar ?? true,
+      isHome:s.screen === 'home', isBrief:s.screen === 'brief', isProcessing:s.screen === 'processing', isCampaign:s.screen === 'campaign', isReview:s.screen === 'review', isHandoff:s.screen === 'handoff',
+      homeFirst:s.homeState === 'first', homeHasRuns:s.homeState !== 'empty', homeNoRuns:s.homeState === 'empty',
+      measuredLabel: s.homeState === 'empty' ? 'Measured across 0 runs' : 'Measured across 24 runs',
+      openExample: () => this.applyPreset('c_drafts'),
+      newAdaptation: () => this.applyPreset('b_empty'),
+      goCampaign: () => this.go('campaign', {preset:null}), goBrief: () => this.go('brief', {preset:null}), goHandoff: () => this.go('handoff', {preset:null}),
+
+      briefIntro: s.brief.headline ? 'Check the brief, pick markets, then run.' : 'Start from scratch, or load the example brief.',
+      exampleLoadedMsg: s.exampleMsg,
+      loadExample: () => this.setState({brief:{...EX}, showErrors:false, exampleMsg:true}),
+      voiceOpen:s.voiceOpen, voiceLinkLabel: s.voiceOpen ? 'Hide voice guide' : 'View voice guide', toggleVoice: () => this.setState({voiceOpen:!s.voiceOpen}),
+      briefFields: [this.field('proposition'), this.field('audience',2), this.field('mandatories',3), this.field('tone',3)],
+      copyFields: [this.field('headline'), this.field('body',4), this.field('cta'), this.field('legal')],
+      marketChecks: CODES.map(c => ({name:NAMES[c], checked:!!s.sel[c], toggle: () => this.setState(st => ({sel:{...st.sel, [c]:!st.sel[c]}}))})),
+      marketError: s.showErrors && !selCodes.length,
+      runEnabled: used < 5, runDisabled: used >= 5, budgetOut: used >= 5,
+      runLabel: s.runError ? 'Try again' : 'Run adaptation',
+      runBudgetText: used >= 5 ? 'All 5 runs used today' : `Uses 1 of 5 runs today. ${5 - used} left.`,
+      runError: s.runError && used < 5,
+      run: () => this.run(),
+      showSummary: s.showErrors && hard.length > 0,
+      summaryText: `Fix ${hard.length === 1 ? 'one thing' : hard.length + ' things'} above before running: ${hard.join(', ')}. Everything else is kept.`,
+      reqs,
+
+      procCountText: selCodes.length === 1 ? '1 market' : `${selCodes.length} markets`,
+      procRows, canOpenCampaign: doneN > 0, cannotOpenCampaign: doneN === 0,
+      procSummary: `${doneN} of ${selCodes.length} ready` + (failN ? ` · ${failN} stopped` : '') + (doneN > 0 && doneN < selCodes.length ? '. You can start reviewing now.' : '.'),
+
+      ovMarketsText: selCodes.map(c => NAMES[c]).join(', ').replace(/, ([^,]*)$/, ' and $1'),
+      critNames: CRIT.map(n => ({name:n})), ovRows,
+
+      reviewTabs: selCodes.map(c => ({label:`${NAMES[c]} · ${this.ready(c) ? (s.m[c].decision ? s.m[c].decision.type : 'Draft') : 'Not ready'}`, deco: s.market === c ? 'underline' : 'none', go: () => this.setState({market:c, selChange:null, panel:null, dismissOpen:null})})),
+      rv, master:MASTER,
+      edit: {...s.edit,
+        onHeadline: e => { const v = e.target.value; this.setState(st => ({edit:{...st.edit, headline:v}})); },
+        onBody: e => { const v = e.target.value; this.setState(st => ({edit:{...st.edit, body:v}})); },
+        onCta: e => { const v = e.target.value; this.setState(st => ({edit:{...st.edit, cta:v}})); },
+        save: () => { const c = s.market; this.setState({panel:null, selChange:null}); this.setM(c, {edited:{...s.edit}, stale:true}, ['Edited copy', 'Scores marked out of date']); },
+        cancel: () => this.setState({panel:null})
+      },
+      cdName:s.cdName, onName: e => this.setState({cdName:e.target.value}),
+      rejectText:s.rejectText, onReject: e => this.setState({rejectText:e.target.value}),
+
+      hoEmpty: !approved.length, hoApproved, hoOthers, hoHasOthers: approved.length > 0 && hoOthers.length > 0,
+      logRows: s.log, logEmpty: !s.log.length
+    };
+  }
+}
+</script>
+
+
+</body></html>

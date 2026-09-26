@@ -1,0 +1,7 @@
+# Manual baseline: how long one market's adaptation and sign-off takes by hand today.
+# The Home efficiency panel shows ADAPT's measured numbers against this.
+# Leave hours_per_market empty until it is measured; the panel then says
+# "Manual baseline not yet measured."
+
+hours_per_market:
+note: ""

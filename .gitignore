@@ -1,0 +1,11 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+data/
+api/.venv/
+__pycache__/
+.pytest_cache/
+web/node_modules/
+web/.svelte-kit/
+web/build/

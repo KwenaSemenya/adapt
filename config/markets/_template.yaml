@@ -1,0 +1,53 @@
+# Market snapshot template. Copy to config/markets/<code>.yaml (za.yaml, ng.yaml, uk.yaml).
+# Files starting with "_" are never loaded.
+#
+# Rules the loader enforces at startup (it refuses to boot otherwise):
+#   - `code` matches the file name.
+#   - Every entry has an ID of the form <CODE>-<letters><number>, e.g. ZA-C1, NG-G2, UK-V3.
+#   - IDs are unique across every snapshot.
+#   - sensitivities need a severity: High, Medium or Low.
+#   - compliance entries need a source and a verified flag (true or false).
+#   - No unknown keys anywhere (typos fail loudly instead of being ignored).
+#
+# Suggested letters per section: V voice_norms, R register, M references.use,
+# A references.avoid, S sensitivities, C compliance, G known_gaps.
+#
+# Every change and flag the AI makes must cite one of these IDs (or a brief field).
+# A citation that doesn't resolve is dropped and logged as "ungrounded".
+# A change that cites a known_gaps entry makes the variant low confidence.
+
+code: xx
+name: Example Market
+language: ""        # e.g. "British English"
+updated: ""         # date the snapshot was last curated, e.g. "2026-09-26"
+
+voice_norms:
+  - id: XX-V1
+    text: ""
+
+register:
+  - id: XX-R1
+    text: ""
+
+references:
+  use:
+    - id: XX-M1
+      text: ""
+  avoid:
+    - id: XX-A1
+      text: ""
+
+sensitivities:
+  - id: XX-S1
+    text: ""
+    severity: Medium
+
+compliance:
+  - id: XX-C1
+    text: ""
+    source: ""        # the law, code or guidance this comes from
+    verified: false   # true only once checked against the primary source
+
+known_gaps:
+  - id: XX-G1
+    text: ""          # what this snapshot does NOT cover

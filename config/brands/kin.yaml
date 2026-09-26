@@ -1,0 +1,93 @@
+# Kin: the demo brand ADAPT adapts for. Kin is campaign content, not the tool.
+# Adding a brand means adding a file like this one. No code change.
+
+id: kin
+name: Kin
+proposition: "Life admin, handled."
+
+voice:
+  traits: [warm, plainspoken, dry, calm]
+  humour: >-
+    Dry and understated. The joke is aimed at the chore, never at the user.
+  signatures:
+    - Names specific chores (the dentist, the refund, the group chat), not "tasks" in general.
+    - Talks to "you".
+    - Ends on relief.
+  never:
+    - Exclamation marks.
+    - Hype words (revolutionary, game-changing, amazing, supercharge, seamless).
+    - Jokes at the user's expense.
+
+# Five criteria, each scored 0, 1 or 2. Scores are advisory and never gate approval.
+rubric:
+  - id: proposition
+    name: Proposition intact
+    question: Does the variant still say that Kin handles your life admin for you?
+    levels:
+      0:
+        description: The proposition is missing or contradicted. Kin reads as a tool you operate, or the admin isn't handled.
+        example: "Kin gives you a smarter way to organise your to-do list."
+      1:
+        description: The proposition is implied but blurred, or a second idea competes with it.
+        example: "Kin helps with the admin, and it's great for planning trips too."
+      2:
+        description: Kin clearly takes the admin off your hands, and nothing competes with that idea.
+        example: "The admin is handled. The weekend is yours."
+
+  - id: tone
+    name: Tone
+    question: Is it warm, plainspoken, dry and calm, with no hype and no exclamation marks?
+    levels:
+      0:
+        description: Hype, urgency or exclamation marks. Or cold and corporate.
+        example: "Supercharge your life with Kin! Never miss a thing again!"
+      1:
+        description: Mostly on tone, with one lapse such as a hype word, a stiff phrase or a rushed rhythm.
+        example: "Kin seamlessly rebooks the dentist and chases the refund."
+      2:
+        description: Warm, plain and calm throughout. Reads like a friend who has it under control.
+        example: "You just say what needs doing. Then go do something better."
+
+  - id: humour
+    name: Humour
+    question: Is there dry humour aimed at the chore, never at the user?
+    levels:
+      0:
+        description: The humour is gone with no reason given, or it turns on the user, or it is broad and jokey.
+        example: "Too lazy to call the dentist? Kin's got you."
+      1:
+        description: >-
+          The humour is weakened, or the joke is dropped with a stated reason (for example, the
+          reference doesn't travel to this market). A dropped joke with a stated reason scores 1, not 0.
+        example: "Kin rebooks the dentist appointment you've been meaning to make."
+      2:
+        description: A dry, understated turn aimed at the chore.
+        example: "Kin rebooks the dentist you've dodged since March."
+
+  - id: signatures
+    name: Voice signatures
+    question: Does it name specific chores, talk to "you", and end on relief?
+    levels:
+      0:
+        description: None of the signatures. Generic tasks, no "you", no relief at the end.
+        example: "Kin manages tasks and appointments efficiently."
+      1:
+        description: One or two signatures present, or they are diluted by extra clauses.
+        example: "Kin rebooks appointments and handles refunds so users save time."
+      2:
+        description: Specific chores, direct address to "you", and a close that lands on relief.
+        example: "Kin chases the refund. You just say what needs doing. Then go do something better."
+
+  - id: mandatories
+    name: Mandatories
+    question: Are the brief's mandatories met, including the legal line word for word?
+    levels:
+      0:
+        description: The legal line is missing or altered, or a mandatory claim is broken.
+        example: "Try Kin free. Kin is always right."
+      1:
+        description: Legal line intact, but another mandatory is missed (for example "free" without the trial length).
+        example: "Try Kin free. Kin can make mistakes. Check important details."
+      2:
+        description: Every mandatory met, legal line word for word.
+        example: "Try Kin free for 14 days. Kin can make mistakes. Check important details."
