@@ -1,11 +1,12 @@
-# AI-DRAFTED by Claude on 2026-09-26 from general knowledge. PENDING HUMAN REVIEW.
-# Every compliance entry is verified: false until checked against the primary source.
-# Anything not confidently known is listed under known_gaps rather than guessed.
+# ILLUSTRATIVE snapshot for the ADAPT demo. Drafted by Claude on 2026-09-26 from
+# general knowledge. Not curated legal or cultural guidance; don't rely on it for real work.
+# compliance entries stay verified: false because none were checked against the primary source.
 
 code: ng
 name: Nigeria
 language: Nigerian English
 updated: "2026-09-26"
+status: illustrative
 
 voice_norms:
   - id: NG-V1

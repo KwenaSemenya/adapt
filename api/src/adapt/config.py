@@ -111,6 +111,8 @@ class Market(Strict):
     name: str
     language: str = ""
     updated: str = ""
+    # "illustrative" snapshots are demo content; the UI labels citations from them.
+    status: Literal["curated", "illustrative"] = "curated"
     voice_norms: list[Entry] = Field(default_factory=list)
     register_: list[Entry] = Field(default_factory=list, alias="register")
     references: References = Field(default_factory=References)

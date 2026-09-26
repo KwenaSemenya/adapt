@@ -20,6 +20,7 @@ code: xx
 name: Example Market
 language: ""        # e.g. "British English"
 updated: ""         # date the snapshot was last curated, e.g. "2026-09-26"
+status: curated     # curated (checked by someone who knows the market) or illustrative (demo only)
 
 voice_norms:
   - id: XX-V1
