@@ -27,7 +27,7 @@ def per_ip() -> int:
 
 
 def global_cap() -> int:
-    return int(os.environ.get("ADAPT_GLOBAL_RUNS_PER_DAY", "50"))
+    return int(os.environ.get("ADAPT_GLOBAL_RUNS_PER_DAY", "15"))
 
 
 def client_ip(request: Request) -> str:
@@ -61,8 +61,21 @@ def usage(conn, session_id: str, iphash: str) -> dict:
     }
 
 
+CREDIT_PAUSE = timedelta(hours=1)
+
+
+def credits_paused(conn) -> bool:
+    """True for an hour after the API reported no credit, so visitors aren't sent into failing runs."""
+    row = conn.execute("SELECT value FROM meta WHERE key='credits_exhausted_at'").fetchone()
+    if not row:
+        return False
+    return datetime.now(UTC) - datetime.fromisoformat(row["value"]) < CREDIT_PAUSE
+
+
 def blocked_reason(conn, session_id: str, iphash: str) -> str | None:
     """The most specific limit that's been reached, or None."""
+    if credits_paused(conn):
+        return "credits"
     u = usage(conn, session_id, iphash)
     if u["session"] >= per_session():
         return "session"
@@ -79,9 +92,11 @@ MESSAGES = {
                "Runs reset at midnight UTC.",
     "global": "ADAPT has reached today's limit of runs for everyone. Your brief is saved on this page. "
               "Runs reset at midnight UTC.",
+    "credits": "ADAPT's AI budget has run out for now, so new runs are paused. Your brief is saved on this page. "
+               "The example campaigns still work.",
 }
 
 
 def message(reason: str) -> str:
-    n = {"session": per_session(), "network": per_ip(), "global": global_cap()}[reason]
+    n = {"session": per_session(), "network": per_ip(), "global": global_cap(), "credits": 0}[reason]
     return MESSAGES[reason].format(n=n)

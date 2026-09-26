@@ -115,3 +115,37 @@ def test_injection_is_data_and_logged(app):
     assert conn.execute("SELECT COUNT(*) FROM log WHERE event='injection_suspected'").fetchone()[0] == 1
     block = brief_block(BRIEF, evil)
     assert block.count("</brief_data>") == 1 and "<system>" not in block
+
+
+def test_out_of_credit_pauses_runs_with_a_plain_message(app):
+    from adapt.llm import CREDITS_MESSAGE, CallContext, StepError, classify_bad_request
+
+    err = classify_bad_request(CallContext("draft"), "Your credit balance is too low to access the Anthropic API.")
+    assert err.event == "credits_exhausted" and err.message == CREDITS_MESSAGE
+    assert classify_bad_request(CallContext("draft"), "max_tokens too large").event == "bad_request"
+    from adapt.db import tx
+
+    with tx() as conn:  # classifying already paused runs; start the end-to-end part from a clean state
+        conn.execute("DELETE FROM meta WHERE key='credits_exhausted_at'")
+
+    def broke(system, user, schema):
+        raise StepError(CREDITS_MESSAGE, event="credits_exhausted")
+
+    llm.set_transport(broke)
+    c = TestClient(app)
+    r = c.post("/api/campaigns", json=RUN)
+    assert r.status_code == 201
+    _wait(c, r.json()["campaign_id"])
+    za = c.get(f"/api/campaigns/{r.json()['campaign_id']}").json()["variants"][0]
+    assert za["error"] == CREDITS_MESSAGE
+    r = c.post("/api/campaigns", json=RUN)
+    assert r.status_code == 429 and r.json()["reason"] == "credits"
+    assert "example campaigns still work" in r.json()["message"]
+    assert c.post("/api/examples/baseline").status_code == 200
+
+
+def test_default_global_cap_is_15(monkeypatch):
+    from adapt import limits
+
+    monkeypatch.delenv("ADAPT_GLOBAL_RUNS_PER_DAY", raising=False)
+    assert limits.global_cap() == 15

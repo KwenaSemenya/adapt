@@ -151,7 +151,9 @@ def call_json(
             )
         try:
             text, usage = transport(system, user, schema)
-        except StepError:
+        except StepError as e:
+            if e.event == "credits_exhausted":
+                mark_credits_exhausted()
             raise
         except anthropic.APITimeoutError:
             raise StepError(f"{ctx.step.capitalize()} stopped. The AI service didn't answer in time.", event="timeout")
@@ -159,6 +161,8 @@ def call_json(
             raise StepError(f"{ctx.step.capitalize()} stopped. The AI service is busy right now.", event="rate_limited")
         except anthropic.AuthenticationError:
             raise StepError("The AI service rejected the API key. Check ANTHROPIC_API_KEY.", event="auth")
+        except anthropic.BadRequestError as e:
+            raise classify_bad_request(ctx, str(e.message))
         except anthropic.APIStatusError as e:
             raise StepError(
                 f"{ctx.step.capitalize()} stopped. The AI service returned an error ({e.status_code}).",
@@ -186,6 +190,26 @@ def call_json(
         f"{ctx.step.capitalize()} stopped. The AI's answer didn't match the expected format twice.",
         event="json_invalid_twice", detail=last_problem,
     )
+
+
+CREDITS_MESSAGE = "ADAPT's AI budget has run out for now. The example campaigns still work."
+
+
+def classify_bad_request(ctx: CallContext, message: str) -> StepError:
+    """A 400 is usually our bug, except when the account is out of credit: say that plainly."""
+    if "credit balance" in message.lower():
+        mark_credits_exhausted()
+        return StepError(CREDITS_MESSAGE, event="credits_exhausted", detail=message[:300])
+    return StepError(f"{ctx.step.capitalize()} stopped. The AI service rejected the request.",
+                     event="bad_request", detail=message[:300])
+
+
+def mark_credits_exhausted() -> None:
+    from .db import now
+
+    with tx() as conn:
+        conn.execute("INSERT INTO meta (key, value) VALUES ('credits_exhausted_at', ?) "
+                     "ON CONFLICT(key) DO UPDATE SET value=excluded.value", (now(),))
 
 
 def strict_schema(model: type[BaseModel]) -> dict[str, Any]:
