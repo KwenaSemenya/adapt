@@ -1,0 +1,206 @@
+# Your scores for the seed variants. The scorer test compares the AI's scores with these.
+# Fill in each number with 0, 1 or 2. Leave a whole variant blank to skip it; the report
+# says how many you scored. Judge only the copy shown, as a Kin creative director would.
+# The legal line is the same on every variant: "Kin can make mistakes. Check important details."
+
+# RUBRIC (score each criterion 0, 1 or 2)
+#
+# proposition = Proposition intact: Does the variant still say that Kin handles your life admin for you?
+#     0: The proposition is missing or contradicted. Kin reads as a tool you operate, or the
+#     admin isn't handled.
+#     1: The proposition is implied but blurred, or a second idea competes with it.
+#     2: Kin clearly takes the admin off your hands, and nothing competes with that idea.
+#
+# tone = Tone: Is it warm, plainspoken, dry and calm, with no hype and no exclamation marks?
+#     0: Hype, urgency or exclamation marks. Or cold and corporate.
+#     1: Mostly on tone, with one lapse such as a hype word, a stiff phrase or a rushed rhythm.
+#     2: Warm, plain and calm throughout. Reads like a friend who has it under control.
+#
+# humour = Humour: Is there dry humour aimed at the chore, never at the user?
+#     0: The humour is gone with no reason given, or it turns on the user, or it is broad and
+#     jokey.
+#     1: The humour is weakened, or the joke is dropped with a stated reason (for example, the
+#     reference doesn't travel to this market). A dropped joke with a stated reason scores 1,
+#     not 0.
+#     2: A dry, understated turn aimed at the chore.
+#
+# signatures = Voice signatures: Does it name specific chores, talk to "you", and end on relief?
+#     0: None of the signatures. Generic tasks, no "you", no relief at the end.
+#     1: One or two signatures present, or they are diluted by extra clauses.
+#     2: Specific chores, direct address to "you", and a close that lands on relief.
+#
+# mandatories = Mandatories: Are the brief's mandatories met, including the legal line word for word?
+#     0: The legal line is missing or altered, or a mandatory claim is broken.
+#     1: Legal line intact, but another mandatory is missed (for example "free" without the
+#     trial length).
+#     2: Every mandatory met, legal line word for word.
+#
+
+# ==========================================================================================
+# BASELINE
+# ==========================================================================================
+
+# --- Baseline · Nigeria ---
+#   Headline: The admin is handled. The weekend is yours.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole group chat. You just say what needs doing. Then go do something
+#   better.
+#   CTA: Try Kin free for 14 days.
+baseline-ng:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# --- Baseline · United Kingdom ---
+#   Headline: The admin is handled. The weekend is yours.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole group chat. You just say what needs doing. Then go and do something
+#   better.
+#   CTA: Try Kin free for 14 days.
+baseline-uk:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# --- Baseline · South Africa ---
+#   Headline: The admin is sorted. The weekend is yours.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole WhatsApp group. You just say what needs doing. Then go do something
+#   better.
+#   CTA: Try Kin free for 14 days.
+baseline-za:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# ==========================================================================================
+# US-ONLY REFERENCE
+# ==========================================================================================
+
+# --- US-only reference · Nigeria ---
+#   Headline: The admin is handled. The weekend is yours.
+#   Body: Kin plans the family gathering so you don't have to. Who's bringing the food, who's
+#   picking up Grandma, when everyone arrives. Handled.
+#   CTA: Try Kin free for 14 days.
+us_reference-ng:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# --- US-only reference · United Kingdom ---
+#   Headline: The admin is handled. The weekend is yours.
+#   Body: Kin plans Christmas so you don't have to. Who's bringing pie, who's picking up
+#   Grandma, when the turkey goes in. Handled.
+#   CTA: Try Kin free for 14 days.
+us_reference-uk:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# --- US-only reference · South Africa ---
+#   Headline: The admin is sorted. The weekend is yours.
+#   Body: Kin plans the WhatsApp group so you don't have to. Who's bringing the drinks, who's
+#   fetching Gran, when to leave. Sorted.
+#   CTA: Try Kin free for 14 days.
+us_reference-za:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# ==========================================================================================
+# PUN
+# ==========================================================================================
+
+# --- Pun · Nigeria ---
+#   Headline: Your to-do list just met its match.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole group chat. You just say what needs doing. Then go do something
+#   better.
+#   CTA: Try Kin free for 14 days.
+pun-ng:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# --- Pun · United Kingdom ---
+#   Headline: Your to-do list just got sorted.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole group chat. You just say what needs doing. Then go and do something
+#   better.
+#   CTA: Try Kin free for 14 days.
+pun-uk:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# --- Pun · South Africa ---
+#   Headline: Your to-do list just gave up.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole WhatsApp group. You just say what needs doing. Then go do something
+#   better.
+#   CTA: Try Kin free for 14 days.
+pun-za:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# ==========================================================================================
+# SENSITIVITY CLASH
+# ==========================================================================================
+
+# --- Sensitivity clash · Nigeria ---
+#   Headline: The admin is handled. The weekend is yours.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole group chat. You just say what needs doing. Then go do something
+#   better. Kin keeps track of your inbox and calendar, so nothing slips.
+#   CTA: Try Kin free for 14 days.
+sensitivity-ng:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# --- Sensitivity clash · United Kingdom ---
+#   Headline: The admin is handled. The weekend is yours.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole group chat. You just say what needs doing. Then go and do something
+#   better. Kin reads your inbox and your calendar, so nothing slips.
+#   CTA: Try Kin free for 14 days.
+sensitivity-uk:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories
+
+# --- Sensitivity clash · South Africa ---
+#   Headline: The admin is sorted. The weekend is yours.
+#   Body: Kin rebooks the dentist you've dodged since March, chases the refund, and finds a time
+#   that works for the whole WhatsApp group. You just say what needs doing. Then go do something
+#   better. Kin reads your calendar, so nothing slips.
+#   CTA: Try Kin free for 14 days.
+sensitivity-za:
+  proposition:        # Proposition intact
+  tone:        # Tone
+  humour:        # Humour
+  signatures:        # Voice signatures
+  mandatories:        # Mandatories

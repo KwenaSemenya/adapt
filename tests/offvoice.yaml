@@ -1,0 +1,63 @@
+# Three deliberately off-voice Kin variants. The scorer test checks the AI catches them.
+# Write each one to break the voice in a different way, and name the criterion it breaks
+# in `breaks` (one of: proposition, tone, humour, signatures, mandatories).
+# The scorer "catches" it if it scores that criterion 0 or 1.
+#
+# Kin's voice: warm, plainspoken, dry, calm. Humour aimed at the chore, never at the user.
+# No exclamation marks, no hype words. Names specific chores, talks to "you", ends on relief.
+#
+# Ideas: hype and exclamation marks (tone); a joke at the user's expense (humour);
+# generic corporate wording with no specific chores (signatures); a CTA that says
+# "free" without the 14-day length (mandatories); copy about something other than
+# handling life admin (proposition).
+
+# RUBRIC (score each criterion 0, 1 or 2)
+#
+# proposition = Proposition intact: Does the variant still say that Kin handles your life admin for you?
+#     0: The proposition is missing or contradicted. Kin reads as a tool you operate, or the
+#     admin isn't handled.
+#     1: The proposition is implied but blurred, or a second idea competes with it.
+#     2: Kin clearly takes the admin off your hands, and nothing competes with that idea.
+#
+# tone = Tone: Is it warm, plainspoken, dry and calm, with no hype and no exclamation marks?
+#     0: Hype, urgency or exclamation marks. Or cold and corporate.
+#     1: Mostly on tone, with one lapse such as a hype word, a stiff phrase or a rushed rhythm.
+#     2: Warm, plain and calm throughout. Reads like a friend who has it under control.
+#
+# humour = Humour: Is there dry humour aimed at the chore, never at the user?
+#     0: The humour is gone with no reason given, or it turns on the user, or it is broad and
+#     jokey.
+#     1: The humour is weakened, or the joke is dropped with a stated reason (for example, the
+#     reference doesn't travel to this market). A dropped joke with a stated reason scores 1,
+#     not 0.
+#     2: A dry, understated turn aimed at the chore.
+#
+# signatures = Voice signatures: Does it name specific chores, talk to "you", and end on relief?
+#     0: None of the signatures. Generic tasks, no "you", no relief at the end.
+#     1: One or two signatures present, or they are diluted by extra clauses.
+#     2: Specific chores, direct address to "you", and a close that lands on relief.
+#
+# mandatories = Mandatories: Are the brief's mandatories met, including the legal line word for word?
+#     0: The legal line is missing or altered, or a mandatory claim is broken.
+#     1: Legal line intact, but another mandatory is missed (for example "free" without the
+#     trial length).
+#     2: Every mandatory met, legal line word for word.
+#
+
+- id: offvoice-1
+  breaks:
+  headline: ""
+  body: ""
+  cta: ""
+
+- id: offvoice-2
+  breaks:
+  headline: ""
+  body: ""
+  cta: ""
+
+- id: offvoice-3
+  breaks:
+  headline: ""
+  body: ""
+  cta: ""
