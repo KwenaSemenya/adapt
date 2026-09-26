@@ -17,8 +17,13 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import APP_NAME
+from .env import load_env
+
+load_env()
+
 from .config import ROOT, ConfigError, load_config
 from .db import init_db
+from .seeds import load_fixtures
 
 log = logging.getLogger("adapt")
 WEB_BUILD = Path(os.environ.get("ADAPT_WEB_BUILD") or ROOT / "web" / "build")
@@ -36,6 +41,7 @@ async def lifespan(app: FastAPI):
         log.warning("No market snapshots in %s/markets. Runs will be refused until they exist.", cfg.source_dir)
     app.state.config = cfg
     app.state.tables = init_db()
+    app.state.seeds = load_fixtures()
     yield
 
 
