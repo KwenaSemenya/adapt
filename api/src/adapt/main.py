@@ -67,6 +67,19 @@ async def session_cookie(request: Request, call_next):
     return response
 
 
+MAX_BODY = 32 * 1024  # a full brief is under 2KB; anything near this is not a brief
+
+
+@app.middleware("http")
+async def body_limit(request: Request, call_next):
+    if request.method in ("POST", "PUT", "PATCH"):
+        size = request.headers.get("content-length")
+        if size and size.isdigit() and int(size) > MAX_BODY:
+            return JSONResponse({"message": "That request is too large. A brief is a few hundred words at most."},
+                                status_code=413)
+    return await call_next(request)
+
+
 @app.exception_handler(HTTPException)
 async def http_error(request: Request, exc: HTTPException) -> JSONResponse:
     detail = exc.detail if isinstance(exc.detail, dict) else {"message": str(exc.detail)}

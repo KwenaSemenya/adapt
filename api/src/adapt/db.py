@@ -58,7 +58,12 @@ def init_db() -> list[str]:
     schema = resources.files("adapt").joinpath("schema.sql").read_text(encoding="utf-8")
     conn = connect()
     try:
+        # Additive migrations for databases created before a column existed.
+        cols = {r["name"] for r in conn.execute("PRAGMA table_info(runs)")}
+        if cols and "ip_hash" not in cols:
+            conn.execute("ALTER TABLE runs ADD COLUMN ip_hash TEXT")
         conn.executescript(schema)
+        conn.execute("CREATE INDEX IF NOT EXISTS runs_ip_day ON runs(ip_hash, day)")
         rows = conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
     finally:
         conn.close()

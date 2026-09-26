@@ -6,13 +6,13 @@ leaves only through the handoff screen's copy and download buttons.
 
 from __future__ import annotations
 
-import os
 import threading
 
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
-from .db import connect, tx
+from . import limits, prompts
+from .db import connect, log_event, tx
 from .pipeline import brief_step, create_campaign, execute_run, finish_run, retry_market, start_run
 from .seeds import SEEDS
 from .views import campaign_view, current_text, variant_view
@@ -34,10 +34,6 @@ EXAMPLES = {
     "pun": "A baseball pun that doesn't travel.",
     "sensitivity": "A claim that Kin reads your inbox and texts.",
 }
-
-
-def runs_per_day() -> int:
-    return int(os.environ.get("ADAPT_RUNS_PER_DAY", "5"))
 
 
 def _cfg(request: Request):
@@ -89,6 +85,7 @@ def bootstrap(request: Request) -> dict:
         seeds_ready = {r["seed_key"] for r in conn.execute(
             "SELECT seed_key FROM campaigns WHERE session_id IS NULL AND is_seed=1")}
         used = _runs_today(conn, sid)
+        limit_reason = limits.blocked_reason(conn, sid, limits.ip_hash(request))
     finally:
         conn.close()
     brand = cfg.brands["kin"]
@@ -100,8 +97,10 @@ def bootstrap(request: Request) -> dict:
         "markets": [{"code": m.code, "name": m.name, "status": m.status}
                     for m in sorted(cfg.markets.values(), key=lambda m: MARKET_ORDER.get(m.code, 99))],
         "limits": LIMITS,
-        "runs_per_day": runs_per_day(),
+        "runs_per_day": limits.per_session(),
         "runs_used_today": used,
+        "limit_reason": limit_reason,
+        "limit_message": limits.message(limit_reason) if limit_reason else None,
         "examples": [{"key": k, "title": SEEDS[k]["title"], "description": EXAMPLES[k]}
                      for k in SEEDS if k in seeds_ready],
         "campaigns": own,
@@ -177,9 +176,23 @@ def create(body: BriefIn, request: Request) -> dict:
     master = {k: body.master.get(k, "").strip() for k in ("headline", "body", "cta")}
     master["legal"] = body.master.get("legal", "")  # kept exactly as typed: it is carried word for word
     markets = [m for m in ("za", "ng", "uk") if m in body.markets and m in cfg.markets]
-    cid = create_campaign(brand="kin", title=f"{cfg.brands['kin'].name} campaign", brief=brief, master=master,
-                          markets=markets, session_id=_sid(request))
-    rid = start_run(cid, session_id=_sid(request))
+    sid, iph = _sid(request), limits.ip_hash(request)
+    with limits.RUN_LOCK:
+        conn = connect()
+        try:
+            reason = limits.blocked_reason(conn, sid, iph)
+        finally:
+            conn.close()
+        if reason:
+            raise HTTPException(429, detail={"message": limits.message(reason), "reason": reason,
+                                             "resets_at": limits.resets_at()})
+        cid = create_campaign(brand="kin", title=f"{cfg.brands['kin'].name} campaign", brief=brief, master=master,
+                              markets=markets, session_id=sid)
+        rid = start_run(cid, session_id=sid, ip_hash=iph)
+    if prompts.looks_like_injection(*brief.values(), *master.values()):
+        # Not blocked: the brief is treated as data either way. Logged so it can be reviewed.
+        with tx() as c:
+            log_event(c, "injection_suspected", level="warn", run_id=rid, market="all")
     threading.Thread(target=execute_run, args=(cfg, rid), daemon=True, name=f"run-{rid}").start()
     return {"campaign_id": cid, "run_id": rid}
 

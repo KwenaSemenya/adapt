@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS runs (
   model         TEXT,
   started_at    TEXT NOT NULL,
   finished_at   TEXT,
-  day           TEXT NOT NULL              -- UTC date, for the daily caps
+  day           TEXT NOT NULL,             -- UTC date, for the daily caps
+  ip_hash       TEXT                       -- salted hash of the client address, for the per-network cap
 );
 CREATE INDEX IF NOT EXISTS runs_session_day ON runs(session_id, day);
 CREATE INDEX IF NOT EXISTS runs_day ON runs(day);

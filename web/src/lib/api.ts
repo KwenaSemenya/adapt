@@ -3,10 +3,12 @@
 export class ApiError extends Error {
 	status: number;
 	fields: Record<string, string>;
-	constructor(status: number, message: string, fields: Record<string, string> = {}) {
+	reason: string | null;
+	constructor(status: number, message: string, fields: Record<string, string> = {}, reason: string | null = null) {
 		super(message);
 		this.status = status;
 		this.fields = fields;
+		this.reason = reason;
 	}
 }
 
@@ -36,7 +38,7 @@ export async function api<T>(path: string, init: RequestInit & { json?: unknown 
 			res.status >= 500
 				? 'ADAPT hit a problem on its side. Try again in a moment.'
 				: 'That request didn’t work. Reload the page and try again.';
-		throw new ApiError(res.status, body?.message ?? fallback, body?.fields ?? {});
+		throw new ApiError(res.status, body?.message ?? fallback, body?.fields ?? {}, body?.reason ?? null);
 	}
 	return body as T;
 }

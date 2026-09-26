@@ -17,6 +17,8 @@ export interface Bootstrap {
 	limits: Record<string, number>;
 	runs_per_day: number;
 	runs_used_today: number;
+	limit_reason: 'session' | 'network' | 'global' | null;
+	limit_message: string | null;
 	examples: { key: string; title: string; description: string }[];
 	campaigns: { id: string; title: string; created_at: string; status: string | null }[];
 	criteria: { id: string; name: string }[];

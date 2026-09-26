@@ -118,15 +118,16 @@ def create_campaign(
     return cid
 
 
-def start_run(campaign_id: str, *, session_id: str | None = None, is_seed: bool = False) -> str:
+def start_run(campaign_id: str, *, session_id: str | None = None, is_seed: bool = False,
+              ip_hash: str | None = None) -> str:
     rid = new_id()
     ts = now()
     with tx() as conn:
         camp = conn.execute("SELECT markets_json FROM campaigns WHERE id=?", (campaign_id,)).fetchone()
         conn.execute(
-            "INSERT INTO runs (id, campaign_id, session_id, is_seed, status, model, started_at, day) "
-            "VALUES (?,?,?,?,?,?,?,?)",
-            (rid, campaign_id, session_id, int(is_seed), "running", model_id(), ts, ts[:10]),
+            "INSERT INTO runs (id, campaign_id, session_id, is_seed, status, model, started_at, day, ip_hash) "
+            "VALUES (?,?,?,?,?,?,?,?,?)",
+            (rid, campaign_id, session_id, int(is_seed), "running", model_id(), ts, ts[:10], ip_hash),
         )
         for m in json.loads(camp["markets_json"]):
             conn.execute(

@@ -71,6 +71,8 @@
 	let serverErrors = $state<Partial<Record<Key | 'markets', string>>>({});
 	let runError = $state('');
 	let budgetOut = $state(false);
+	let budgetMsg = $state('');
+	let budgetReason = $state<string | null>(null);
 	let exampleMsg = $state(false);
 	let voiceOpen = $state(false);
 	let running = $state(false);
@@ -115,7 +117,13 @@
 	const markets = $derived(app.boot?.markets ?? []);
 	const perDay = $derived(app.boot?.runs_per_day ?? 5);
 	const used = $derived(app.boot?.runs_used_today ?? 0);
-	const out = $derived(budgetOut || used >= perDay);
+	const out = $derived(budgetOut || !!app.boot?.limit_reason || used >= perDay);
+	const outMsg = $derived(
+		budgetMsg ||
+			app.boot?.limit_message ||
+			`You've used all ${perDay} runs for today. Your brief is saved on this page. Runs reset at midnight UTC.`
+	);
+	const sessionOut = $derived((budgetReason ?? app.boot?.limit_reason ?? 'session') === 'session');
 
 	function fieldError(k: Key): string {
 		const n = form[k].length;
@@ -187,6 +195,8 @@
 				showErrors = true;
 			} else if (err.status === 429) {
 				budgetOut = true;
+				budgetMsg = err.message;
+				budgetReason = err.reason;
 			} else {
 				runError =
 					err.status === 0
@@ -360,7 +370,9 @@
 					{/if}
 					<span class="text-[16px] text-muted tabular-nums">
 						{out
-							? `All ${perDay} runs used today`
+							? sessionOut
+								? `All ${perDay} runs used today`
+								: 'No runs left today'
 							: `Uses 1 of ${perDay} runs today. ${perDay - used} left.`}
 					</span>
 				</div>
@@ -369,10 +381,7 @@
 				{/if}
 				{#if out}
 					<div class="grid max-w-[66ch] gap-2" role="status">
-						<p class="m-0 text-[16px]">
-							You've used all {perDay} runs for today. Your brief is saved on this page. Runs reset at
-							midnight UTC.
-						</p>
+						<p class="m-0 text-[16px]">{outMsg}</p>
 						<p class="m-0 text-[16px]">
 							While you wait, you can <button class="link-btn text-[16px]" onclick={openExample}
 								>open the example campaign</button
