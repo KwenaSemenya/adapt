@@ -1,13 +1,14 @@
 // "26 Sep, 14:18" in the viewer's time zone, matching the design's stamps.
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 export function stamp(iso: string | null | undefined): string {
 	if (!iso) return '';
 	const d = new Date(iso);
 	if (Number.isNaN(d.getTime())) return '';
-	return (
-		d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) +
-		', ' +
-		d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
-	);
+	// Built by hand: some locales print "Sept", the design uses three-letter months.
+	const hh = String(d.getHours()).padStart(2, '0');
+	const mm = String(d.getMinutes()).padStart(2, '0');
+	return `${d.getDate()} ${MONTHS[d.getMonth()]}, ${hh}:${mm}`;
 }
 
 // "South Africa, Nigeria and United Kingdom"

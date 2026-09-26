@@ -117,6 +117,7 @@ export interface Variant extends VariantSummary {
 	flags: Flag[];
 	confidence_why: string[];
 	rescore_count: number;
+	blockers: string[];
 	decision_reason: string | null;
 	snapshot_status: string | null;
 }

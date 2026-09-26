@@ -111,10 +111,15 @@ def bootstrap(request: Request) -> dict:
 
 @router.get("/metrics")
 def metrics(request: Request) -> dict:
+    from .decisions import metrics_summary
+
     cfg = _cfg(request)
-    # Filled in by the metrics work in Phase 4; the shape is final.
-    return {"runs": 0, "time_to_draft_s": None, "review_time_s": None, "words_kept_pct": None,
-            "flag_ack_rate": None, "baseline_hours_per_market": cfg.baseline.hours_per_market}
+    conn = connect()
+    try:
+        m = metrics_summary(conn)
+    finally:
+        conn.close()
+    return {**m, "baseline_hours_per_market": cfg.baseline.hours_per_market}
 
 
 @router.get("/seed-brief")
@@ -231,6 +236,171 @@ def retry(variant_id: str, request: Request) -> dict:
         c.execute("UPDATE runs SET status='running', finished_at=NULL WHERE id=?", (v["run_id"],))
     threading.Thread(target=retry_market, args=(_cfg(request), variant_id), daemon=True).start()
     return {"ok": True, "step": v["step"]}
+
+
+# ---------- human decisions ----------
+
+
+class Who(BaseModel):
+    who: str | None = None
+
+
+class WithReason(Who):
+    reason: str | None = None
+
+
+class EditIn(Who):
+    headline: str = ""
+    body: str = ""
+    cta: str = ""
+
+
+def _act(fn, *args):
+    from .decisions import Refused
+
+    try:
+        fn(*args)
+    except Refused as e:
+        detail = {"message": e.message}
+        if getattr(e, "fields", None):
+            detail["fields"] = e.fields
+        raise HTTPException(e.status, detail=detail)
+
+
+def _own_flag(conn, request: Request, flag_id: str) -> None:
+    row = conn.execute(
+        "SELECT c.session_id FROM flags f JOIN runs r ON r.id=f.run_id JOIN campaigns c ON c.id=r.campaign_id "
+        "WHERE f.id=?", (flag_id,)).fetchone()
+    if not row or row["session_id"] != _sid(request):
+        raise HTTPException(404, detail={"message": "That flag isn't in this browser session."})
+
+
+def _variant_after(request: Request, variant_id: str) -> dict:
+    conn = connect()
+    try:
+        return variant_view(conn, _cfg(request), variant_id)
+    finally:
+        conn.close()
+
+
+def _flag_variant(flag_id: str) -> str:
+    conn = connect()
+    try:
+        return conn.execute("SELECT variant_id FROM flags WHERE id=?", (flag_id,)).fetchone()["variant_id"]
+    finally:
+        conn.close()
+
+
+@router.post("/variants/{variant_id}/opened")
+def opened(variant_id: str, request: Request) -> dict:
+    from .decisions import open_review
+
+    conn = connect()
+    try:
+        _own_variant(conn, request, variant_id)
+    finally:
+        conn.close()
+    open_review(variant_id)
+    return {"ok": True}
+
+
+@router.post("/flags/{flag_id}/ack")
+def ack_flag(flag_id: str, body: Who, request: Request) -> dict:
+    from .decisions import acknowledge
+
+    conn = connect()
+    try:
+        _own_flag(conn, request, flag_id)
+    finally:
+        conn.close()
+    _act(acknowledge, flag_id, body.who, _sid(request))
+    return _variant_after(request, _flag_variant(flag_id))
+
+
+@router.post("/flags/{flag_id}/dismiss")
+def dismiss_flag(flag_id: str, body: WithReason, request: Request) -> dict:
+    from .decisions import dismiss
+
+    conn = connect()
+    try:
+        _own_flag(conn, request, flag_id)
+    finally:
+        conn.close()
+    _act(dismiss, flag_id, body.who, body.reason, _sid(request))
+    return _variant_after(request, _flag_variant(flag_id))
+
+
+@router.post("/flags/{flag_id}/undo")
+def undo_flag(flag_id: str, body: Who, request: Request) -> dict:
+    from .decisions import reopen
+
+    conn = connect()
+    try:
+        _own_flag(conn, request, flag_id)
+    finally:
+        conn.close()
+    _act(reopen, flag_id, body.who, _sid(request))
+    return _variant_after(request, _flag_variant(flag_id))
+
+
+def _owned(request: Request, variant_id: str) -> None:
+    conn = connect()
+    try:
+        _own_variant(conn, request, variant_id)
+    finally:
+        conn.close()
+
+
+@router.post("/variants/{variant_id}/edit")
+def edit_variant(variant_id: str, body: EditIn, request: Request) -> dict:
+    from .decisions import edit
+
+    _owned(request, variant_id)
+    _act(edit, variant_id, body.who, body.model_dump(), _sid(request))
+    return _variant_after(request, variant_id)
+
+
+@router.post("/variants/{variant_id}/rescore")
+def rescore(variant_id: str, body: Who, request: Request) -> dict:
+    from .decisions import check_rescore, record_rescore
+    from .llm import StepError
+    from .pipeline import score_variant
+
+    _owned(request, variant_id)
+    _act(check_rescore, variant_id)
+    try:
+        score_variant(_cfg(request), variant_id, step_name="rescore")
+    except StepError as e:
+        raise HTTPException(502, detail={"message": e.message + " No rescore was used. Try again."})
+    record_rescore(variant_id, body.who, _sid(request))
+    return _variant_after(request, variant_id)
+
+
+@router.post("/variants/{variant_id}/approve")
+def approve_variant(variant_id: str, body: Who, request: Request) -> dict:
+    from .decisions import approve
+
+    _owned(request, variant_id)
+    _act(approve, variant_id, body.who, _sid(request))
+    return _variant_after(request, variant_id)
+
+
+@router.post("/variants/{variant_id}/reject")
+def reject_variant(variant_id: str, body: WithReason, request: Request) -> dict:
+    from .decisions import reject
+
+    _owned(request, variant_id)
+    _act(reject, variant_id, body.who, body.reason, _sid(request))
+    return _variant_after(request, variant_id)
+
+
+@router.post("/variants/{variant_id}/undo")
+def undo_variant(variant_id: str, body: Who, request: Request) -> dict:
+    from .decisions import undo_decision
+
+    _owned(request, variant_id)
+    _act(undo_decision, variant_id, body.who, _sid(request))
+    return _variant_after(request, variant_id)
 
 
 # ---------- handoff ----------

@@ -141,6 +141,7 @@ def variant_view(conn: sqlite3.Connection, cfg: Config, variant_id: str) -> dict
         "flags": flags,
         "confidence_why": json.loads(v["confidence_why"]),
         "rescore_count": v["rescore_count"],
+        "blockers": [f["cite"]["id"] for f in flags if f["severity"] == "High" and f["state"] == "open"],
         "decision_reason": v["decision_reason"],
         "snapshot_status": market.status if market else None,
     }

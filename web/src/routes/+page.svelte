@@ -36,11 +36,19 @@
 		}
 	}
 
-	const baselineText = $derived(
-		metrics?.baseline_hours_per_market
-			? `Manual baseline: ${metrics.baseline_hours_per_market} hours per market`
-			: 'Manual baseline not yet measured.'
+	// Tool time per market = time to draft + review time, set against the manual baseline.
+	const toolMinutes = $derived(
+		metrics && metrics.runs > 0
+			? ((metrics.time_to_draft_s ?? 0) + (metrics.review_time_s ?? 0)) / 60
+			: null
 	);
+	const baselineText = $derived.by(() => {
+		const h = metrics?.baseline_hours_per_market;
+		if (!h) return 'Manual baseline not yet measured.';
+		const base = `Manual baseline: ${h} hours per market.`;
+		if (toolMinutes == null) return base;
+		return `${base} With ADAPT: ${mmss(toolMinutes * 60)} (min:sec) per market, draft plus review, before any work outside this tool.`;
+	});
 </script>
 
 <main class="page gap-20 pt-20 pb-32 md:pt-32">
