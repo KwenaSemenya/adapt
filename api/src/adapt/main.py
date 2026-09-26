@@ -12,7 +12,7 @@ import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -23,7 +23,9 @@ load_env()
 
 from .config import ROOT, ConfigError, load_config
 from .db import init_db
+from .routes import recover_interrupted, router
 from .seeds import load_fixtures
+from .sessions import COOKIE, cookie_secure, ensure_session
 
 log = logging.getLogger("adapt")
 WEB_BUILD = Path(os.environ.get("ADAPT_WEB_BUILD") or ROOT / "web" / "build")
@@ -42,10 +44,36 @@ async def lifespan(app: FastAPI):
     app.state.config = cfg
     app.state.tables = init_db()
     app.state.seeds = load_fixtures()
+    interrupted = recover_interrupted()
+    if interrupted:
+        log.warning("Marked %d interrupted market(s) as stopped; they can be retried.", interrupted)
     yield
 
 
 app = FastAPI(title=APP_NAME, lifespan=lifespan, docs_url=None, redoc_url=None)
+
+
+@app.middleware("http")
+async def session_cookie(request: Request, call_next):
+    """Every API request gets an anonymous session; the cookie is the only identity."""
+    if not request.url.path.startswith("/api/") or request.url.path == "/api/health":
+        return await call_next(request)
+    sid, created = ensure_session(request.cookies.get(COOKIE))
+    request.state.session_id = sid
+    response = await call_next(request)
+    if created:
+        response.set_cookie(COOKIE, sid, max_age=60 * 60 * 24 * 30, httponly=True, samesite="lax",
+                            secure=cookie_secure())
+    return response
+
+
+@app.exception_handler(HTTPException)
+async def http_error(request: Request, exc: HTTPException) -> JSONResponse:
+    detail = exc.detail if isinstance(exc.detail, dict) else {"message": str(exc.detail)}
+    return JSONResponse(detail, status_code=exc.status_code)
+
+
+app.include_router(router)
 
 
 @app.get("/api/health")

@@ -81,3 +81,151 @@
 		animation: none !important;
 	}
 }
+
+/* Components, from the design's repeated inline styles. */
+@layer components {
+	.page {
+		margin-inline: auto;
+		display: grid;
+		width: 100%;
+		max-width: 1200px;
+		padding-inline: 16px;
+	}
+	@media (min-width: 768px) {
+		.page {
+			padding-inline: 48px;
+		}
+	}
+	.t-display {
+		margin: 0;
+		font-size: 56px;
+		line-height: 1.05;
+		font-weight: 400;
+		letter-spacing: -0.035em;
+	}
+	@media (max-width: 640px) {
+		.t-display {
+			font-size: 40px;
+		}
+	}
+	.t-title {
+		margin: 0;
+		font-size: 28px;
+		font-weight: 400;
+		letter-spacing: -0.02em;
+	}
+	.t-note {
+		font-size: 13px;
+		color: var(--color-muted);
+	}
+	.serif {
+		font-family: var(--font-serif);
+	}
+	.btn {
+		display: inline-flex;
+		height: 48px;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		border-radius: 999px;
+		border: 1px solid var(--color-ink);
+		padding-inline: 24px;
+		font-size: 16px;
+		white-space: nowrap;
+		text-decoration: none;
+		transition:
+			background 200ms ease-out,
+			color 200ms ease-out,
+			transform 200ms ease-out;
+	}
+	.btn:not(:disabled):active {
+		transform: scale(0.98);
+	}
+	.btn-primary {
+		background: var(--color-ink);
+		color: #ffffff;
+	}
+	.btn-primary:not(:disabled):hover {
+		background: var(--color-ink-hover);
+		color: #ffffff;
+	}
+	.btn-secondary {
+		background: #ffffff;
+		color: var(--color-ink);
+	}
+	.btn-secondary:not(:disabled):hover {
+		background: var(--color-wash);
+		color: var(--color-ink);
+	}
+	.btn:disabled,
+	.btn[aria-disabled='true'] {
+		background: var(--color-line);
+		color: var(--color-muted);
+		border-color: var(--color-line);
+		cursor: not-allowed;
+	}
+	/* A pending button keeps its colours so the click reads as accepted, not refused. */
+	.btn[aria-busy='true'] {
+		cursor: progress;
+		opacity: 0.85;
+	}
+	.btn-sm {
+		height: 40px;
+		padding-inline: 16px;
+	}
+	.link-btn {
+		border: 0;
+		background: none;
+		padding: 0;
+		color: var(--color-ink);
+		font-size: inherit;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.link-btn:hover {
+		color: var(--color-muted);
+	}
+	.field {
+		border: 1px solid var(--color-edge);
+		border-radius: 12px;
+		background: #ffffff;
+		color: var(--color-ink);
+		font-size: 16px;
+		outline-offset: 2px;
+	}
+	.field[aria-invalid='true'] {
+		border: 2px solid var(--color-ink);
+	}
+	.rule {
+		border-top: 1px solid var(--color-line);
+	}
+	.panel {
+		display: grid;
+		gap: 16px;
+		border-radius: 20px;
+		background: var(--color-wash);
+		padding: 32px;
+		max-width: 760px;
+	}
+	/* Scroll wide tables sideways on small screens instead of crushing them. */
+	.table-scroll {
+		overflow-x: auto;
+	}
+	.table-scroll > * {
+		min-width: 960px;
+	}
+}
+
+/* Indeterminate shimmer for a step that's working; the estimate bar sits under it. */
+@keyframes adapt-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.55;
+	}
+}
+.working-bar {
+	animation: adapt-pulse 1.6s ease-in-out infinite;
+}
