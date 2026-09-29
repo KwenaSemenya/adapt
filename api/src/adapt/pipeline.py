@@ -415,6 +415,10 @@ def flag_step(cfg: Config, variant_id: str) -> None:
         gap_used = any(c["cites"] == cite for c in changes) and sources[cite].is_gap
         if severity == "Low confidence" and not gap_used:
             severity = "Low"
+        # ...and a flag on a gap a change relies on is always Low confidence, whatever the model called it,
+        # so the flag list agrees with the variant's Low confidence label.
+        if gap_used:
+            severity = "Low confidence"
         # A risk the copy only implies (or whose quote isn't really in the copy) is worth a look, never a blocker.
         stated = f.basis == "stated" and _in_copy(f.quote, text)
         if f.basis != "missing" and not stated and severity in ("High", "Medium"):

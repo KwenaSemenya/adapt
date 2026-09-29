@@ -284,3 +284,20 @@ def test_implied_risks_are_capped_at_low_and_master_is_citable(env):
     assert "Check: A removal, not a claim." not in rows  # quotes only master words, so it's dropped
     brief = conn.execute("SELECT severity FROM flags WHERE run_id=? AND scope='brief'", (rid,)).fetchone()
     assert brief["severity"] == "Medium"  # set by code from kind=mandatory
+
+
+def test_flag_on_a_relied_on_gap_is_always_low_confidence(env):
+    fake = Fake()
+    d = fake.draft("ng")
+    d["body"] = MASTER["body"].replace("the whole group chat", "the family WhatsApp group")
+    d["changes"].append({"field": "body", "was": "the whole group chat", "now": "the family WhatsApp group",
+                         "cites": "NG-G1", "why": "no guidance"})
+    fake.drafts["ng"] = d
+    fake.flag = lambda m: {"flags": [{"severity": "Low", "basis": "stated", "text": "Check: family occasions.",
+                                      "cites": f"{m.upper()}-G1", "quote": "family WhatsApp group"}]}
+    rid, _ = _run(env, fake)
+    conn = connect()
+    ng = _variants(rid)["ng"]
+    sev = [r["severity"] for r in conn.execute("SELECT severity FROM flags WHERE variant_id=? AND cites='NG-G1'",
+                                               (ng["id"],))]
+    assert sev == ["Low confidence"]
