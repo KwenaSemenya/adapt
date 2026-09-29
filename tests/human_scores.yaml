@@ -47,11 +47,11 @@
 #   better.
 #   CTA: Try Kin free for 14 days.
 baseline-ng:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:    2    # Proposition intact
+  tone:  2      # Tone
+  humour:   0  # Humour
+  signatures:  2     # Voice signatures
+  mandatories:     2   # Mandatories
 
 # --- Baseline · United Kingdom ---
 #   Headline: The admin is handled. The weekend is yours.
@@ -60,11 +60,11 @@ baseline-ng:
 #   better.
 #   CTA: Try Kin free for 14 days.
 baseline-uk:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:    2    # Proposition intact
+  tone:     2   # Tone
+  humour:     0  # Humour
+  signatures:  2   # Voice signatures
+  mandatories:   2     # Mandatories
 
 # --- Baseline · South Africa ---
 #   Headline: The admin is sorted. The weekend is yours.
@@ -73,11 +73,11 @@ baseline-uk:
 #   better.
 #   CTA: Try Kin free for 14 days.
 baseline-za:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:    2    # Proposition intact
+  tone:      2  # Tone
+  humour:     0  # Humour
+  signatures:     2   # Voice signatures
+  mandatories:    2    # Mandatories
 
 # ==========================================================================================
 # US-ONLY REFERENCE
@@ -89,11 +89,11 @@ baseline-za:
 #   picking up Grandma, when everyone arrives. Handled.
 #   CTA: Try Kin free for 14 days.
 us_reference-ng:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:   2     # Proposition intact
+  tone:     2   # Tone
+  humour:     2   # Humour
+  signatures:   2     # Voice signatures
+  mandatories:   2     # Mandatories
 
 # --- US-only reference · United Kingdom ---
 #   Headline: The admin is handled. The weekend is yours.
@@ -101,11 +101,11 @@ us_reference-ng:
 #   Grandma, when the turkey goes in. Handled.
 #   CTA: Try Kin free for 14 days.
 us_reference-uk:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:   2     # Proposition intact
+  tone:   2     # Tone
+  humour:    2    # Humour
+  signatures:   2     # Voice signatures
+  mandatories:   2     # Mandatories
 
 # --- US-only reference · South Africa ---
 #   Headline: The admin is sorted. The weekend is yours.
@@ -113,11 +113,11 @@ us_reference-uk:
 #   fetching Gran, when to leave. Sorted.
 #   CTA: Try Kin free for 14 days.
 us_reference-za:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:   2     # Proposition intact
+  tone:    2    # Tone
+  humour:   2     # Humour
+  signatures:    2    # Voice signatures
+  mandatories:     2   # Mandatories
 
 # ==========================================================================================
 # PUN
@@ -130,11 +130,11 @@ us_reference-za:
 #   better.
 #   CTA: Try Kin free for 14 days.
 pun-ng:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:    2    # Proposition intact
+  tone:    2    # Tone
+  humour:     0   # Humour
+  signatures:    2    # Voice signatures
+  mandatories:   2     # Mandatories
 
 # --- Pun · United Kingdom ---
 #   Headline: Your to-do list just got sorted.
@@ -143,11 +143,11 @@ pun-ng:
 #   better.
 #   CTA: Try Kin free for 14 days.
 pun-uk:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:    2    # Proposition intact
+  tone:   2     # Tone
+  humour:     0   # Humour
+  signatures:    2    # Voice signatures
+  mandatories:    2    # Mandatories
 
 # --- Pun · South Africa ---
 #   Headline: Your to-do list just gave up.
@@ -156,11 +156,11 @@ pun-uk:
 #   better.
 #   CTA: Try Kin free for 14 days.
 pun-za:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:    2    # Proposition intact
+  tone:      2  # Tone
+  humour:      0  # Humour
+  signatures:    2    # Voice signatures
+  mandatories:   2     # Mandatories
 
 # ==========================================================================================
 # SENSITIVITY CLASH
@@ -172,12 +172,12 @@ pun-za:
 #   that works for the whole group chat. You just say what needs doing. Then go do something
 #   better. Kin keeps track of your inbox and calendar, so nothing slips.
 #   CTA: Try Kin free for 14 days.
-sensitivity-ng:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+sensitivity-ng: 
+  proposition:     2   # Proposition intact
+  tone:    2    # Tone
+  humour:     0   # Humour
+  signatures:  2      # Voice signatures
+  mandatories:   2     # Mandatories
 
 # --- Sensitivity clash · United Kingdom ---
 #   Headline: The admin is handled. The weekend is yours.
@@ -186,11 +186,11 @@ sensitivity-ng:
 #   better. Kin reads your inbox and your calendar, so nothing slips.
 #   CTA: Try Kin free for 14 days.
 sensitivity-uk:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:   2     # Proposition intact
+  tone:    2    # Tone
+  humour:     0   # Humour
+  signatures:     2   # Voice signatures
+  mandatories:    2    # Mandatories
 
 # --- Sensitivity clash · South Africa ---
 #   Headline: The admin is sorted. The weekend is yours.
@@ -199,8 +199,8 @@ sensitivity-uk:
 #   better. Kin reads your calendar, so nothing slips.
 #   CTA: Try Kin free for 14 days.
 sensitivity-za:
-  proposition:        # Proposition intact
-  tone:        # Tone
-  humour:        # Humour
-  signatures:        # Voice signatures
-  mandatories:        # Mandatories
+  proposition:  2  # Proposition intact
+  tone:   2     # Tone
+  humour:  0      # Humour
+  signatures:   2     # Voice signatures
+  mandatories:    2    # Mandatories
