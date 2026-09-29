@@ -47,7 +47,7 @@ The other direction happened too. For the US-reference variants, where the Thank
 1. **Have the creative director write the rubric examples, especially for humour.** The fastest fix is to replace the level-2 humour example with a line a Kin CD agrees is dry and aimed at the chore, then rerun this test. I'd expect humour agreement to rise sharply, because the scorer is clearly anchored on the examples.
 2. **Calibrate with a small human-scored set in the prompt.** Five or six variants scored by the CD, with one-line reasons, would teach the scorer the house's reading of "at the chore, not the user" better than a one-line description.
 3. **Label humour as a taste call in the interface.** Keep showing it, but mark it as the least reliable score, and lead with the reason rather than the number.
-4. **Stop scorer noise tripping low confidence.** Either ignore humour for the rescore-drift signal, or require the shift to hold across two rescores. Scoring three times and taking the median would also work, at three times the cost.
+4. **Stop scorer noise tripping low confidence.** Either ignore humour for the rescore-drift signal, or require the shift to hold across two rescores. Scoring three times and taking the median would also work, at three times the cost. *Applied after this test:* humour no longer counts towards the rescore-drift signal (`drift_signal: false` in `config/brands/kin.yaml`). The other four criteria still do.
 5. **Test with harder cases.** Add mid-quality variants (mostly on-brand, one subtle slip) so agreement isn't measured at the ceiling, and ads that break exactly one criterion while matching the master everywhere else.
 
 ## Decision after the test

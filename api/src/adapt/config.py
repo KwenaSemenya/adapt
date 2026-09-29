@@ -58,6 +58,9 @@ class Criterion(Strict):
     name: str = Field(min_length=1)
     question: str = Field(min_length=1)
     levels: dict[int, RubricLevel]
+    # False for taste criteria where the scorer is noisy: a rescore swing there shouldn't
+    # mark a variant low confidence. Set from evidence (docs/scorer-test.md), not by default.
+    drift_signal: bool = True
 
     @field_validator("levels")
     @classmethod

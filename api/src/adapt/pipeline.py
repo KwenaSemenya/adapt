@@ -339,8 +339,9 @@ def score_variant(cfg: Config, variant_id: str, *, step_name: str = "score") -> 
     why = json.loads(v["confidence_why"])
     if history:
         prev = {p["criterion"]: p["score"] for p in history[-1]["scores"]}
+        watched = {c.id for c in brand.rubric if c.drift_signal}
         for s in scores:
-            if abs(s["score"] - prev.get(s["criterion"], s["score"])) >= 2:
+            if s["criterion"] in watched and abs(s["score"] - prev.get(s["criterion"], s["score"])) >= 2:
                 why.append(f"A rescore moved {s['name']} from {prev[s['criterion']]} to {s['score']}.")
     history.append({"at": now(), "scores": [{"criterion": s["criterion"], "score": s["score"]} for s in scores]})
     with tx() as conn:

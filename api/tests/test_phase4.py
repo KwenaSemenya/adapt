@@ -205,3 +205,15 @@ def test_review_and_draft_timing():
 
     assert _secs("2026-09-26T10:00:00+00:00", "2026-09-26T10:06:40+00:00") == 400
     assert _secs(None, "2026-09-26T10:00:00+00:00") is None
+
+
+def test_humour_swing_on_rescore_does_not_mark_low_confidence(client):
+    v = _variant_with_high(client)
+    fake = Fake()
+    fake.score = lambda m: {"scores": [{"criterion": c, "score": 0 if c == "humour" else 2, "reason": "r"}
+                                       for c in ("proposition", "tone", "humour", "signatures", "mandatories")]}
+    llm.set_transport(fake)
+    client.post(f"/api/variants/{v['id']}/edit", json={"who": "A", "headline": "Admin, sorted. FOR:za",
+                                                       "body": v["text"]["body"], "cta": v["text"]["cta"]})
+    r = client.post(f"/api/variants/{v['id']}/rescore", json={"who": "A"}).json()
+    assert not any("Humour" in w for w in r["confidence_why"])

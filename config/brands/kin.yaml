@@ -51,6 +51,9 @@ rubric:
   - id: humour
     name: Humour
     question: Is there dry humour aimed at the chore, never at the user?
+    # The scorer test found humour scores can swing 2 to 0 on unchanged copy, so a rescore
+    # swing here doesn't mark a variant low confidence. See docs/scorer-test.md.
+    drift_signal: false
     levels:
       0:
         description: The humour is gone with no reason given, or it turns on the user, or it is broad and jokey.
