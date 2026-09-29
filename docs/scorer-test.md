@@ -50,6 +50,10 @@ The other direction happened too. For the US-reference variants, where the Thank
 4. **Stop scorer noise tripping low confidence.** Either ignore humour for the rescore-drift signal, or require the shift to hold across two rescores. Scoring three times and taking the median would also work, at three times the cost.
 5. **Test with harder cases.** Add mid-quality variants (mostly on-brand, one subtle slip) so agreement isn't measured at the ceiling, and ads that break exactly one criterion while matching the master everywhere else.
 
+## Decision after the test
+
+Having read the scorer's reasons, I changed my mind: "the dentist you've dodged since March" is dry humour aimed at the chore, as the rubric says. I kept the rubric as it is. My original scores stay in `tests/human_scores.yaml` unchanged, so the numbers above show what the test actually found. This is the human-in-the-loop working in both directions: the scorer's reasoning corrected my first read, and the rubric remains the thing a creative director signs off.
+
 ## Limits of this test
 
 - One human rater (me). A second creative director would show whether my humour reading is the house view or mine.
