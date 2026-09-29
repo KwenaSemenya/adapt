@@ -1,0 +1,16 @@
+# Secrets and local state never go into the image.
+**/.env
+**/.env.*
+data/
+.git/
+**/node_modules/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+web/.svelte-kit/
+web/build/
+design/
+docs/
+tests/
+scripts/
+api/tests/

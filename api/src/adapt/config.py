@@ -16,7 +16,8 @@ from typing import Literal
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
-ROOT = Path(__file__).resolve().parents[3]
+# Repo root locally; the container sets ADAPT_ROOT so paths never depend on how the package was installed.
+ROOT = Path(os.environ.get("ADAPT_ROOT") or Path(__file__).resolve().parents[3])
 DEFAULT_CONFIG_DIR = ROOT / "config"
 
 # Brief fields are citable like snapshot entries, so they get fixed IDs.

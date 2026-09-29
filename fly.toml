@@ -1,0 +1,35 @@
+# ADAPT on Fly.io: one app, one machine, one volume (SQLite lives on the volume).
+app = "adapt"
+primary_region = "jnb"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  ANTHROPIC_MODEL = "claude-sonnet-5"
+  ADAPT_RUNS_PER_DAY = "5"
+  ADAPT_RUNS_PER_IP_PER_DAY = "15"
+  ADAPT_GLOBAL_RUNS_PER_DAY = "15"
+
+[mounts]
+  source = "adapt_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # Sleep when idle so a demo costs almost nothing between interviews.
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    path = "/api/health"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
