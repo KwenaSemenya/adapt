@@ -45,19 +45,19 @@
 #
 
 - id: offvoice-1
-  breaks:
-  headline: ""
-  body: ""
-  cta: ""
+  breaks: humour
+  headline: "Struggling to organise your days? Kin is your solution"
+  body: "Kin can rebook the nail appointment that slipped your mind, again, and collects the payment that you are too frazzled to collect. You just say the word, and Kin does it, so that you can organise the rest of your life"
+  cta: "Get a 2-week free trial on Kin"
 
 - id: offvoice-2
-  breaks:
-  headline: ""
-  body: ""
-  cta: ""
+  breaks: signatures
+  headline: "Your long to-do list, done."
+  body: "Kin can manage meetings, pending payments and organisation throughout all of your accounts, so that you can keep things running smoothly and on-time. Users just say the word, no matter the request."
+  cta: "Get a 2-week free trial on Kin."
 
 - id: offvoice-3
-  breaks:
-  headline: ""
-  body: ""
-  cta: ""
+  breaks: mandatories
+  headline: "Forget about the admin and enjoy your weekend"
+  body: "Kin can help you reorganise the doctor check up you've been avoiding for 2 months, get the payment, and finds a calendar slot that fits everyone in the friend group. You just tell Kin what to do, so that you can go do something more interesting"
+  cta: "Try Kin free."
