@@ -1,0 +1,1604 @@
+{
+  "fake": false,
+  "repeats": 5,
+  "consistency": {
+    "proposition": {
+      "name": "Proposition intact",
+      "variants": [
+        {
+          "id": "baseline-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        }
+      ],
+      "unstable": 0,
+      "swing_2": 0,
+      "mean_sd": 0.0
+    },
+    "tone": {
+      "name": "Tone",
+      "variants": [
+        {
+          "id": "baseline-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-ng",
+          "scores": [
+            2,
+            1,
+            1,
+            1,
+            2
+          ],
+          "range": 1,
+          "sd": 0.4898979485566356
+        },
+        {
+          "id": "pun-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        }
+      ],
+      "unstable": 1,
+      "swing_2": 0,
+      "mean_sd": 0.041
+    },
+    "humour": {
+      "name": "Humour",
+      "variants": [
+        {
+          "id": "baseline-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-ng",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-uk",
+          "scores": [
+            2,
+            1,
+            2,
+            1,
+            1
+          ],
+          "range": 1,
+          "sd": 0.4898979485566356
+        },
+        {
+          "id": "us_reference-za",
+          "scores": [
+            2,
+            2,
+            1,
+            0,
+            2
+          ],
+          "range": 2,
+          "sd": 0.8
+        },
+        {
+          "id": "pun-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        }
+      ],
+      "unstable": 2,
+      "swing_2": 1,
+      "mean_sd": 0.107
+    },
+    "signatures": {
+      "name": "Voice signatures",
+      "variants": [
+        {
+          "id": "baseline-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        }
+      ],
+      "unstable": 0,
+      "swing_2": 0,
+      "mean_sd": 0.0
+    },
+    "mandatories": {
+      "name": "Mandatories",
+      "variants": [
+        {
+          "id": "baseline-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "baseline-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "us_reference-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "pun-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-ng",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-uk",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        },
+        {
+          "id": "sensitivity-za",
+          "scores": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "range": 0,
+          "sd": 0.0
+        }
+      ],
+      "unstable": 0,
+      "swing_2": 0,
+      "mean_sd": 0.0
+    }
+  },
+  "offvoice": [
+    {
+      "id": "offvoice-1",
+      "breaks": "humour",
+      "text": {
+        "headline": "Struggling to organise your days? Kin is your solution",
+        "body": "Kin can rebook the nail appointment that slipped your mind, again, and collects the payment that you are too frazzled to collect. You just say the word, and Kin does it, so that you can organise the rest of your life",
+        "cta": "Get a 2-week free trial on Kin",
+        "legal": "Kin can make mistakes. Check important details."
+      },
+      "target_scores": [
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "caught_runs": 5,
+      "runs": 5,
+      "all_scores": [
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 1,
+          "mandatories": 1
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 0,
+          "signatures": 1,
+          "mandatories": 2
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 1,
+          "mandatories": 1
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 1,
+          "mandatories": 1
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 1,
+          "mandatories": 1
+        }
+      ],
+      "reasons": [
+        "Mild dry note ('slipped your mind, again') but weak, not sharply aimed at the chore.",
+        "No dry wit; phrasing like 'too frazzled' leans toward mocking the user, not the chore.",
+        "'too frazzled to collect' leans toward mocking the user rather than the chore.",
+        "\u2018slipped your mind, again\u2019 leans toward mocking the user rather than the chore.",
+        "Slight dry touch ('again') but weak, more descriptive than a real joke."
+      ]
+    },
+    {
+      "id": "offvoice-2",
+      "breaks": "signatures",
+      "text": {
+        "headline": "Your long to-do list, done.",
+        "body": "Kin can manage meetings, pending payments and organisation throughout all of your accounts, so that you can keep things running smoothly and on-time. Users just say the word, no matter the request.",
+        "cta": "Get a 2-week free trial on Kin.",
+        "legal": "Kin can make mistakes. Check important details."
+      },
+      "target_scores": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "caught_runs": 5,
+      "runs": 5,
+      "all_scores": [
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 0,
+          "signatures": 0,
+          "mandatories": 2
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 0,
+          "signatures": 1,
+          "mandatories": 1
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 0,
+          "signatures": 1,
+          "mandatories": 2
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 0,
+          "signatures": 0,
+          "mandatories": 2
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 0,
+          "signatures": 1,
+          "mandatories": 1
+        }
+      ],
+      "reasons": [
+        "Generic tasks, inconsistent address ('Users'), no relief at close.",
+        "Tasks are generic not specific chores, switches to 'Users' instead of 'you', weak relief ending.",
+        "Uses generic 'meetings, pending payments' not specific chores; 'you' appears once, no clear relief close.",
+        "No specific chores named, switches to 'Users' instead of 'you', no relief close.",
+        "Mentions generic tasks not specific chores, switches to 'Users' diluting direct address, no relief ending."
+      ]
+    },
+    {
+      "id": "offvoice-3",
+      "breaks": "mandatories",
+      "text": {
+        "headline": "Forget about the admin and enjoy your weekend",
+        "body": "Kin can help you reorganise the doctor check up you've been avoiding for 2 months, get the payment, and finds a calendar slot that fits everyone in the friend group. You just tell Kin what to do, so that you can go do something more interesting",
+        "cta": "Try Kin free.",
+        "legal": "Kin can make mistakes. Check important details."
+      },
+      "target_scores": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "caught_runs": 5,
+      "runs": 5,
+      "all_scores": [
+        {
+          "proposition": 2,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 2,
+          "mandatories": 1
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 1,
+          "mandatories": 1
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 2,
+          "mandatories": 1
+        },
+        {
+          "proposition": 1,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 2,
+          "mandatories": 1
+        },
+        {
+          "proposition": 2,
+          "tone": 1,
+          "humour": 1,
+          "signatures": 2,
+          "mandatories": 1
+        }
+      ],
+      "reasons": [
+        "Legal line intact, but 'free' isn't paired with the 14-day trial length.",
+        "Legal line intact, but 'Try Kin free' omits the required 14-day trial length.",
+        "Legal line intact, but 'Try Kin free.' omits the required 14-day trial length.",
+        "Legal line intact, but 'free' isn't paired with the required 14-day trial length.",
+        "Legal line verbatim, but 'free' lacks the 14-day trial length."
+      ]
+    }
+  ],
+  "agreement": {
+    "overall_raw": {
+      "n": 60,
+      "exact": 48,
+      "within_1": 50,
+      "exact_pct": 80.0
+    },
+    "overall_adjusted": {
+      "n": 60,
+      "exact": 48,
+      "within_1": 51,
+      "exact_pct": 80.0
+    },
+    "by_criterion": {
+      "proposition": {
+        "n": 12,
+        "exact": 12,
+        "within_1": 12,
+        "exact_pct": 100.0
+      },
+      "tone": {
+        "n": 12,
+        "exact": 11,
+        "within_1": 12,
+        "exact_pct": 91.7
+      },
+      "humour": {
+        "n": 12,
+        "exact": 1,
+        "within_1": 3,
+        "exact_pct": 8.3
+      },
+      "signatures": {
+        "n": 12,
+        "exact": 12,
+        "within_1": 12,
+        "exact_pct": 100.0
+      },
+      "mandatories": {
+        "n": 12,
+        "exact": 12,
+        "within_1": 12,
+        "exact_pct": 100.0
+      }
+    },
+    "disagreements": [
+      {
+        "variant": "baseline-ng",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "\"Dentist you've dodged since March\" is a dry jab at the chore, not the user.",
+          "\"dentist you've dodged since March\" is dry humour aimed at the chore, not the user."
+        ]
+      },
+      {
+        "variant": "baseline-uk",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "\"dentist you've dodged since March\" is dry humour aimed at the chore, not the user.",
+          "\"dodged since March\" is a dry jab at the chore, not the user."
+        ]
+      },
+      {
+        "variant": "baseline-za",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "\"Dodged since March\" is a dry jab at the chore, not the user.",
+          "'Dodged since March' is a dry, understated jab at the chore, not the user."
+        ]
+      },
+      {
+        "variant": "us_reference-ng",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 2,
+        "ai_raw": 0,
+        "ai_adjusted": 1,
+        "ai_reasons": [
+          "No dry humour present; body is straightforward description without a wry turn.",
+          "No dry wit or joke aimed at the chore, just plain description."
+        ]
+      },
+      {
+        "variant": "us_reference-uk",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 2,
+        "ai_raw": 1,
+        "ai_adjusted": 1,
+        "ai_reasons": [
+          "Dry list of chores ending in flat \"Handled.\" is understated humour aimed at the task.",
+          "Dry, specific list (\"pie... Grandma... turkey\") pokes fun at the chore, not the user."
+        ]
+      },
+      {
+        "variant": "pun-ng",
+        "criterion": "tone",
+        "name": "Tone",
+        "human": 2,
+        "ai_raw": 1,
+        "ai_adjusted": 1,
+        "ai_reasons": [
+          "Calm, plainspoken, no hype or exclamation marks throughout.",
+          "Headline 'met its match' is slightly punchy/competitive, breaking calm plainspoken tone."
+        ]
+      },
+      {
+        "variant": "pun-ng",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "'Dodged since March' is dry, understated, aimed at the chore not the user.",
+          "'dentist you've dodged since March' is dry humour aimed at the chore."
+        ]
+      },
+      {
+        "variant": "pun-uk",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "\"dodged since March\" is dry humor aimed at the chore, not the user.",
+          "'Dodged since March' is a dry, understated jab at the chore, not the user."
+        ]
+      },
+      {
+        "variant": "pun-za",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "\"dodged since March\" is dry humour aimed at the chore, not the user.",
+          "'Dodged since March' is dry, understated humour aimed at the chore, not the user."
+        ]
+      },
+      {
+        "variant": "sensitivity-ng",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "\"dodged since March\" is a dry, understated jab at the chore, not the user.",
+          "\"dodged since March\" is dry, understated, aimed at the chore."
+        ]
+      },
+      {
+        "variant": "sensitivity-uk",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "\"dodged since March\" is a dry, understated jab at the chore, not the user.",
+          "\"dodged since March\" is dry and aimed at the chore, not the user."
+        ]
+      },
+      {
+        "variant": "sensitivity-za",
+        "criterion": "humour",
+        "name": "Humour",
+        "human": 0,
+        "ai_raw": 2,
+        "ai_adjusted": 2,
+        "ai_reasons": [
+          "\"dentist you've dodged since March\" is dry humour aimed at the chore.",
+          "\"the dentist you've dodged since March\" is dry humour aimed at the chore, not the user."
+        ]
+      }
+    ],
+    "variants_scored_by_human": 12
+  },
+  "failures": [],
+  "cost": {
+    "calls": 75,
+    "input_tokens": 159545,
+    "output_tokens": 27706,
+    "usd": 0.596,
+    "model": "claude-sonnet-5"
+  },
+  "seed_runs": {
+    "baseline-ng": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "baseline-uk": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "baseline-za": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "us_reference-ng": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 0,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 0,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 0,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 0,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 0,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "us_reference-uk": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 1,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 1,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 1,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "us_reference-za": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 1,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 0,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "pun-ng": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 1,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 1,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 1,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "pun-uk": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "pun-za": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "sensitivity-ng": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "sensitivity-uk": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ],
+    "sensitivity-za": [
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      },
+      {
+        "proposition": 2,
+        "tone": 2,
+        "humour": 2,
+        "signatures": 2,
+        "mandatories": 2
+      }
+    ]
+  }
+}
